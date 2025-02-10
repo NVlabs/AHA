@@ -1,0 +1,4 @@
+hydra-core
+moviepy
+numpy
+pillow

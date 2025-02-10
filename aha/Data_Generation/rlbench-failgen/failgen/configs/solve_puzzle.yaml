@@ -1,0 +1,74 @@
+data:
+  # Where to save the demos
+  save_path: /home/${oc.env:USER}/data/rlbench_data
+  # The size of the images to save
+  image_size: [256, 256]
+  # The renderer to use. Either opengl or opengl3. The first has no shadows
+  renderer: opengl3
+  # The number of episodes to collect per task
+  episodes_per_task: 5
+  # The image types that will be recorded
+  images:
+    rgb: True
+    depth: True
+    mask: True
+    point_cloud: True
+  # The cameras that we will be enabled
+  cameras:
+    left_shoulder: True
+    right_shoulder: True
+    overhead: True
+    wrist: True
+    front: True
+  # Store depth as 0 - 1
+  depth_in_meters: False
+  # We want to save the masks as rgb encodings.
+  masks_as_one_channel: True
+  # The set of waypoints for this task
+  waypoints: [0, 1, 2, 3, 4]
+failures:
+  - type: grasp
+    name: failure_grasp_pose
+    enabled: False
+    waypoints: [4]
+
+  - type: translation_x
+    name: trans_x
+    enabled: False
+    waypoints: [1,4]
+    range: [-0.5, 0.5]
+
+  - type: translation_y
+    name: trans_y
+    enabled: False
+    waypoints: [0,1,4]
+    range: [-0.5, 0.5]
+
+  - type: translation_z
+    name: trans_z
+    enabled: False
+    waypoints: [1,2]
+    range: [-0.5, 0.5]
+
+  - type: rotation_x
+    name: rot_x
+    enabled: False
+    waypoints: [1]
+    range: [-1.57, 1.57]
+
+  - type: rotation_y
+    name: rot_y
+    enabled: False
+    waypoints: [1]
+    range: [-1.57, 1.57]
+
+  - type: slip
+    name: slippery
+    enabled: False
+    waypoints: [1,2,3]
+    fail_after: 4
+
+  - type: wrong_sequence
+    name: bad_seq
+    enabled: False
+    waypoints: [0,3]
