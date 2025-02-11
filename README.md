@@ -1,6 +1,6 @@
 # AHA
 
-
+AHA: A Vision-Language-Model for Detecting and Reasoning Over Failures in Robotic Manipulation
 
 ## Getting started
 
