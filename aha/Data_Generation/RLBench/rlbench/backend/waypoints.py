@@ -1,3 +1,7 @@
+# Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+#
+# Licensed under the NVIDIA Source Code License [see LICENSE for details].
+
 from pyrep.const import ConfigurationPathAlgorithms as Algos
 from pyrep.objects.object import Object
 from pyrep.robots.configuration_paths.arm_configuration_path import (
