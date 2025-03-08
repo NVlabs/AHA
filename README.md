@@ -121,51 +121,36 @@ xvfb-run -a -s "-screen 0 1400x900x24" python /aha/Data_Generation/rlbench-failg
 
 Visual instruction tuning takes around 40 hours for on 8 A100 GPUs with 80GB memory. We trained AHA in similar ways as RoboPoint (Even with the same data mix excluding the Pointing data). 
 
-Here is the instruction for you perform visual instruction tuning on AHA generated failure dataset
+Here is the instruction for you perform visual instruction tuning on AHA generated failure dataset + Co-training data mix.
 
-Training scripts can be found under `scripts`.
+```bash
+git clone https://github.com/wentaoyuan/RoboPoint.git
+conda create -n robopoint python=3.10 -y
+conda activate robopoint
 
-If you are do not have enough GPU memory, you can reduce `BATCH_PER_GPU` and increase the `GRAD_ACC_STEPS` accordingly. Always keep the global batch size the same: `NUM_NODES` x `NUM_GPUS` x `BATCH_PER_GPU` x `GRAD_ACC_STEPS`.
+pip install --upgrade pip  # enable PEP 660 support
 
-Hyperparameters used in instruction tuning are provided below.
+# this is optional if you prefer to system built-in nvcc.
+conda install -c nvidia cuda=12.1 -y
 
-| Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay |
-| ---: | ---: | ---: | ---: | ---: | ---: |
-| RoboPoint-v1-13B | 128 | 2e-5 | 1 | 2048 | 0 |
+pip install -e .
 
-## Evaluation
-
-Where2Place, a benchmark for spatial free-space reference on challenging real world images, can be found on HuggingFace at [wentao-yuan/where2place](https://huggingface.co/datasets/wentao-yuan/where2place).
-
-To evaluate on Where2Place, first run the following command to generate results
+# this is optional if you don't need to train the model
+pip install -e ".[train]"
+pip install flash-attn --no-build-isolation
 ```
-python robopoint/eval/model_vqa.py \
-    --model-path wentao-yuan/robopoint-v1-vicuna-v1.5-13b \
-    --image-folder datasets/where2place/images \
-    --question-file datasets/where2place/point_questions.jsonl \
-    --answer-file output/robopoint-v1-vicuna-v1.5-13b.jsonl
-```
-Then, run the following command to compute the accuracy
-```
-python robopoint/eval/summarize_vqa.py --answer output/robopoint-v1-vicuna-v1.5-13b.jsonl
-```
-If needed, the following command visualizes the outputs of different models together with the ground truth
-```
-python robopoint/eval/visualize_vqa.py \
-    --label gpt-4o robopoint \
-    --answer output/gpt-4o.jsonl output/robopoint-v1-vicuna-v1.5-13b.jsonl \
-    --output output/gpt-4o-vs-robopoint \
-    --num 10
-```
+
+Merge the AHA failure dataset with the [Co-training data](https://huggingface.co/datasets/wentao-yuan/robopoint-data) and run the training scripts that can be found under `scripts` to perform full visual instruction finetuning.
+
 
 ## Citation
 
 If you find RoboPoint useful for your research and applications, please consider citing our paper:
 ```bibtex
-@article{yuan2024robopoint,
-  title={RoboPoint: A Vision-Language Model for Spatial Affordance Prediction for Robotics},
-  author={Yuan, Wentao and Duan, Jiafei and Blukis, Valts and Pumacay, Wilbert and Krishna, Ranjay and Murali, Adithyavairavan and Mousavian, Arsalan and Fox, Dieter},
-  journal={arXiv preprint arXiv:2406.10721},
+@article{duan2024aha,
+  title={AHA: A vision-language-model for detecting and reasoning over failures in robotic manipulation},
+  author={Duan, Jiafei and Pumacay, Wilbert and Kumar, Nishanth and Wang, Yi Ru and Tian, Shulin and Yuan, Wentao and Krishna, Ranjay and Fox, Dieter and Mandlekar, Ajay and Guo, Yijie},
+  journal={arXiv preprint arXiv:2410.00371},
   year={2024}
 }
 ```
