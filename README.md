@@ -14,8 +14,7 @@
 
 ## Contents
 - [Data Generation](#data-generation)
-- [Training](#train)
-- [Evaluation](#evaluation)
+- [Visual Instruction Finetuning](#train)
 
 ## Data Generation
 
@@ -117,7 +116,7 @@ xvfb-run -a -s "-screen 0 1400x900x24" python /aha/Data_Generation/rlbench-failg
 ```
 
 
-### Training
+### Visual Instruction Finetuning
 
 Visual instruction tuning takes around 40 hours for on 8 A100 GPUs with 80GB memory. We trained AHA in similar ways as RoboPoint (Even with the same data mix excluding the Pointing data). 
 
