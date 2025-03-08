@@ -144,8 +144,8 @@ Merge the AHA failure dataset with the [Co-training data](https://huggingface.co
 
 ## Acknowledgments
 We would like to acknowledge the following projects where parts of the codes in this repo is derived from:
-- [REFLECT][(https://github.com/wayveai/mile](https://github.com/real-stanford/reflect))
-- [RLBench]([https://github.com/real-stanford/diffusion_policy](https://github.com/stepjam/RLBench))
+- [REFLECT](https://github.com/real-stanford/reflect)
+- [RLBench](https://github.com/stepjam/RLBench)
 - [RoboPoint](https://github.com/wentaoyuan/RoboPoint)
 
 ## Citation
