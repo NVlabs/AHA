@@ -7,21 +7,21 @@ def replace_files():
     """
     # Hardcoded lists of source files and their target directories
     source_files = [
-        '/net/nfs/prior/jiafei/test_repo/AHA-main/aha/Data_Generation/RLBench/rlbench/backend/observation.py',
-        '/net/nfs/prior/jiafei/test_repo/AHA-main/aha/Data_Generation/RLBench/rlbench/backend/scene.py',
-        '/net/nfs/prior/jiafei/test_repo/AHA-main/aha/Data_Generation/RLBench/rlbench/backend/waypoints.py',
-        '/net/nfs/prior/jiafei/test_repo/AHA-main/aha/Data_Generation/RLBench/rlbench/demo.py',
-        '/net/nfs/prior/jiafei/test_repo/AHA-main/aha/Data_Generation/RLBench/rlbench/observation_config.py',
-        '/net/nfs/prior/jiafei/test_repo/AHA-main/aha/Data_Generation/RLBench/rlbench/task_environment.py'
+        './aha/Data_Generation/RLBench/rlbench/backend/observation.py',
+        './aha/Data_Generation/RLBench/rlbench/backend/scene.py',
+        './aha/Data_Generation/RLBench/rlbench/backend/waypoints.py',
+        './aha/Data_Generation/RLBench/rlbench/demo.py',
+        './aha/Data_Generation/RLBench/rlbench/observation_config.py',
+        './aha/Data_Generation/RLBench/rlbench/task_environment.py'
     ]
     
     target_dirs = [
-        '/net/nfs/prior/jiafei/test_repo/RLBench/rlbench/backend',
-        '/net/nfs/prior/jiafei/test_repo/RLBench/rlbench/backend',
-        '/net/nfs/prior/jiafei/test_repo/RLBench/rlbench/backend',
-        '/net/nfs/prior/jiafei/test_repo/RLBench/rlbench',
-        '/net/nfs/prior/jiafei/test_repo/RLBench/rlbench',
-        '/net/nfs/prior/jiafei/test_repo/RLBench/rlbench'
+        './RLBench/rlbench/backend',
+        './RLBench/rlbench/backend',
+        './RLBench/rlbench/backend',
+        './RLBench/rlbench',
+        './RLBench/rlbench',
+        './RLBench/rlbench'
     ]
     
     # Check if the lists have the same length
