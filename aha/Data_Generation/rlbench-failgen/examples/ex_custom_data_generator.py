@@ -96,7 +96,7 @@ def main() -> int:
     parser.add_argument(
         "--output-folder",
         type=str,
-        default="/home/gregor/data/keyframe_data",
+        default="/net/nfs/prior/jiafei/test_repo/AHA-main/aha/Data_Generation/rlbench-failgen/data",
         help="The location where to save the collected keyframes",
     )
 
@@ -142,9 +142,8 @@ def main() -> int:
 
     for ep_idx in tqdm(range(args.num_episodes)):
         rlbench_ctx.reset()
-        (_,) = task_env.get_demos(
+        _ = task_env.get_failures(
             amount=1,
-            live_demos=True,
             max_attempts=args.max_tries,
             callable_each_waypoint=on_waypoint,
         )
@@ -155,5 +154,7 @@ def main() -> int:
     return 0
 
 
+if __name__ == "__main__":
+    raise SystemExit(main())
 if __name__ == "__main__":
     raise SystemExit(main())
