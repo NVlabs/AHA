@@ -102,10 +102,10 @@ def run_get_failures(
                 demo, success = env_wrapper.get_failure()
                 if demo is not None and not success:
                     env_wrapper.save_cameras(i, fail_type)
-                    #### env_wrapper.save_failure_ext(i, fail_type, demo)
-                    #### env_wrapper.save_video(
-                    ####     f"vid_{task_name}_{fail_type}_{i}.mp4"
-                    #### )
+                    env_wrapper.save_failure_ext(i, fail_type, demo)
+                    env_wrapper.save_video(
+                        f"vid_{task_name}_{fail_type}_{i}.mp4"
+                    )
                     break
                 else:
                     attempts -= 1
@@ -133,10 +133,10 @@ def run_get_failures(
                 demo, success = env_wrapper.get_failure()
                 if demo is not None and not success:
                     env_wrapper.save_cameras(i, fail_type, wp_idx)
-                    #### env_wrapper.save_failure_ext(i, fail_type, demo, wp_idx)
-                    #### env_wrapper.save_video(
-                    ####     f"vid_{task_name}_{fail_type}_{i}.mp4"
-                    #### )
+                    env_wrapper.save_failure_ext(i, fail_type, demo, wp_idx)
+                    env_wrapper.save_video(
+                        f"vid_{task_name}_{fail_type}_{i}.mp4"
+                    )
                     break
                 else:
                     attempts -= 1
