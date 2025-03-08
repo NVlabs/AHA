@@ -1,93 +1,171 @@
-# AHA
+# AHA: A Vision-Language-Model for Detecting and Reasoning over Failures in Robotic Manipulation
 
-AHA: A Vision-Language-Model for Detecting and Reasoning Over Failures in Robotic Manipulation
+*Precise failure reasoning and detection for robotic manipulation
 
-## Getting started
+[[Project Page](https://aha-vlm.github.io/)] [[Paper](https://aha-vlm.github.io/Aha_paper.pdf)] 
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+**AHA: A Vision-Language-Model for Detecting and Reasoning over Failures in Robotic Manipulation [ICLR 2025]** [[Paper](https://arxiv.org/abs/2410.00371)] <br>
+[Jiafei Duan](https://duanjiafei.com), [Wilbert Pumacay](https://wpumacay.github.io), [Nishanth Kumar](https://nishanthjkumar.com/), [Yi Ru Wang](https://helen9975.github.io/), [Shulin Tian](https://shulin16.github.io/), [Wentao Yuan](https://wentaoyuan.github.io), [Ranjay Krishna](https://ranjaykrishna.com), [Dieter Fox](https://homes.cs.washington.edu/~fox/), [Ajay Mandlekar*](https://ai.stanford.edu/~amandlek/), [Yijie Guo*](https://research.nvidia.com/person/yijie-guo)
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+![Overview](ahah-teaser.gif)
 
-## Add your files
+## Introduction
+ AHA, an open-source VLM specifically designed to detect and reason about failures in robotic manipulation through natural language. Through failure reasoning, AHA can aid to improve performance for robotic manipulation systems that relys on VLM (such as Trust the PRoC3S, Manipulate-Anything, and Eureka). 
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+## Contents
+- [Data Generation](#data-generation)
+- [Training](#train)
+- [Evaluation](#evaluation)
 
+## Data Generation
+
+This contains the steps to setup and generate failure data via FailGen. 
+
+#### 1. Environment
+
+Open your terminal and clone the repository:
+
+```bash
+git clone https://github.com/yourusername/aha](https://github.com/NVlabs/AHA.git
+cd AHA
+conda env create -f environment.yml
+conda create -n aha python=3.9
+conda activate aha
+pip install -r requirements.txt
 ```
-cd existing_repo
-git remote add origin https://gitlab-master.nvidia.com/srl/aha.git
-git branch -M main
-git push -uf origin main
+
+#### 2. PyRep and Coppelia Simulator
+
+Follow instructions from the official [PyRep](https://github.com/stepjam/PyRep) repo; reproduced here for convenience:
+
+PyRep requires version **4.1** of CoppeliaSim. Download: 
+- [Ubuntu 16.04](https://downloads.coppeliarobotics.com/V4_1_0/CoppeliaSim_Player_V4_1_0_Ubuntu16_04.tar.xz)
+- [Ubuntu 18.04](https://downloads.coppeliarobotics.com/V4_1_0/CoppeliaSim_Player_V4_1_0_Ubuntu18_04.tar.xz)
+- [Ubuntu 20.04](https://www.coppeliarobotics.com/previousVersions#)
+
+Once you have downloaded CoppeliaSim, you can pull PyRep from git:
+
+```bash
+cd <install_dir>
+git clone https://github.com/stepjam/PyRep.git
+cd PyRep
 ```
 
-## Integrate with your tools
+Add the following to your *~/.bashrc* file: (__NOTE__: the 'EDIT ME' in the first line)
 
-- [ ] [Set up project integrations](https://gitlab-master.nvidia.com/srl/aha/-/settings/integrations)
+```bash
+export COPPELIASIM_ROOT=<EDIT ME>/PATH/TO/COPPELIASIM/INSTALL/DIR
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$COPPELIASIM_ROOT
+export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT
+```
 
-## Collaborate with your team
+Remember to source your bashrc (`source ~/.bashrc`) or 
+zshrc (`source ~/.zshrc`) after this.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+**Warning**: CoppeliaSim might cause conflicts with ROS workspaces. 
 
-## Test and Deploy
+Finally install the python library:
 
-Use the built-in continuous integration in GitLab.
+```bash
+pip install -r requirements.txt
+pip install .
+```
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+You should be good to go!
+You could try running one of the examples in the *examples/* folder.
 
-***
+If you encounter errors, please use the [PyRep issue tracker](https://github.com/stepjam/PyRep/issues).
 
-# Editing this README
+#### 3. RLBench
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+AHA uses my [RLBench fork](https://github.com/MohitShridhar/RLBench/tree/peract). 
 
-## Suggestions for a good README
+```bash
+cd <install_dir>
+git clone -b peract https://github.com/MohitShridhar/RLBench.git # From Mohit's branch
+python update.py
+cd RLBench
+pip install -r requirements.txt
+python setup.py develop
+```
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+#### 4. Generating Failure Demos via FailGen
 
-## Name
-Choose a self-explaining name for your project.
+```bash
+cd aha/Data_Generation/rlbench-failgen
+pip install -r requirements.txt
+pip install -e .
+```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Generate failure trajectories with only keyframes:
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+```bash
+python /aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py --num-episodes 1 --max-tries 3 --output-folder <OUTPUT DIR>
+```
+or 
+```bash
+xvfb-run -a -s "-screen 0 1400x900x24" python /aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py --num-episodes 1 --max-tries 3 --output-folder <OUTPUT DIR> #For running on cluster or server
+```
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Generate failure trajectories with all frames:
+```bash
+python /aha/Data_Generation/rlbench-failgen/examples/ex_failgen_data_collection.py
+```
+or 
+```bash
+xvfb-run -a -s "-screen 0 1400x900x24" python /aha/Data_Generation/rlbench-failgen/examples/ex_failgen_data_collection.py
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### Training
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Visual instruction tuning takes around 40 hours for on 8 A100 GPUs with 80GB memory. We trained AHA in similar ways as RoboPoint (Even with the same data mix excluding the Pointing data). 
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+Here is the instruction for you perform visual instruction tuning on AHA generated failure dataset
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Training scripts can be found under `scripts`.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+If you are do not have enough GPU memory, you can reduce `BATCH_PER_GPU` and increase the `GRAD_ACC_STEPS` accordingly. Always keep the global batch size the same: `NUM_NODES` x `NUM_GPUS` x `BATCH_PER_GPU` x `GRAD_ACC_STEPS`.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Hyperparameters used in instruction tuning are provided below.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+| Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| RoboPoint-v1-13B | 128 | 2e-5 | 1 | 2048 | 0 |
 
-## License
-For open source projects, say how it is licensed.
+## Evaluation
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Where2Place, a benchmark for spatial free-space reference on challenging real world images, can be found on HuggingFace at [wentao-yuan/where2place](https://huggingface.co/datasets/wentao-yuan/where2place).
+
+To evaluate on Where2Place, first run the following command to generate results
+```
+python robopoint/eval/model_vqa.py \
+    --model-path wentao-yuan/robopoint-v1-vicuna-v1.5-13b \
+    --image-folder datasets/where2place/images \
+    --question-file datasets/where2place/point_questions.jsonl \
+    --answer-file output/robopoint-v1-vicuna-v1.5-13b.jsonl
+```
+Then, run the following command to compute the accuracy
+```
+python robopoint/eval/summarize_vqa.py --answer output/robopoint-v1-vicuna-v1.5-13b.jsonl
+```
+If needed, the following command visualizes the outputs of different models together with the ground truth
+```
+python robopoint/eval/visualize_vqa.py \
+    --label gpt-4o robopoint \
+    --answer output/gpt-4o.jsonl output/robopoint-v1-vicuna-v1.5-13b.jsonl \
+    --output output/gpt-4o-vs-robopoint \
+    --num 10
+```
+
+## Citation
+
+If you find RoboPoint useful for your research and applications, please consider citing our paper:
+```bibtex
+@article{yuan2024robopoint,
+  title={RoboPoint: A Vision-Language Model for Spatial Affordance Prediction for Robotics},
+  author={Yuan, Wentao and Duan, Jiafei and Blukis, Valts and Pumacay, Wilbert and Krishna, Ranjay and Murali, Adithyavairavan and Mousavian, Arsalan and Fox, Dieter},
+  journal={arXiv preprint arXiv:2406.10721},
+  year={2024}
+}
+```
