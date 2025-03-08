@@ -142,6 +142,12 @@ pip install flash-attn --no-build-isolation
 Merge the AHA failure dataset with the [Co-training data](https://huggingface.co/datasets/wentao-yuan/robopoint-data) and run the training scripts that can be found under `scripts` to perform full visual instruction finetuning.
 
 
+## Acknowledgments
+We would like to acknowledge the following projects where parts of the codes in this repo is derived from:
+- [REFLECT][(https://github.com/wayveai/mile](https://github.com/real-stanford/reflect))
+- [RLBench]([https://github.com/real-stanford/diffusion_policy](https://github.com/stepjam/RLBench))
+- [RoboPoint](https://github.com/wentaoyuan/RoboPoint)
+
 ## Citation
 
 If you find RoboPoint useful for your research and applications, please consider citing our paper:
