@@ -14,7 +14,7 @@
 
 ## Contents
 - [Data Generation](#data-generation)
-- [Visual Instruction Finetuning](#train)
+- [Visual Instruction Finetuning](#visual-instruction-finetuning)
 
 ## Data Generation
 
