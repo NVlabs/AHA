@@ -150,7 +150,7 @@ We would like to acknowledge the following projects where parts of the codes in 
 
 ## Citation
 
-If you find RoboPoint useful for your research and applications, please consider citing our paper:
+If you find AHA useful for your research and applications, please consider citing our paper:
 ```bibtex
 @article{duan2024aha,
   title={AHA: A vision-language-model for detecting and reasoning over failures in robotic manipulation},
