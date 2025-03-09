@@ -3,69 +3,155 @@
 # Licensed under the NVIDIA Source Code License [see LICENSE for details].
 
 import argparse
-from pathlib import Path
-from typing import Dict, List, Optional
+from multiprocessing import Process
+from typing import List, Optional
 
-import numpy as np
-from PIL import Image
-from pyrep.const import RenderMode
-from tqdm import tqdm
+from failgen.env_wrapper import FailGenEnvWrapper
+from failgen.fail_grasp import GraspFailure
+from failgen.fail_instance import IFailure
+from failgen.fail_no_rotation import NoRotationFailure
+from failgen.fail_rotation import (
+    RotationXFailure,
+    RotationYFailure,
+    RotationZFailure,
+)
+from failgen.fail_wrong_object import WrongObjectFailure
+from failgen.fail_sequence import WrongSequenceFailure
+from failgen.fail_slip import SlipFailure
+from failgen.fail_translation import (
+    TranslationXFailure,
+    TranslationYFailure,
+    TranslationZFailure,
+)
 
-from rlbench.action_modes.action_mode import MoveArmThenGripper
-from rlbench.action_modes.arm_action_modes import JointVelocity
-from rlbench.action_modes.gripper_action_modes import Discrete
-from rlbench.backend.waypoints import Waypoint
-from rlbench.environment import DIR_PATH, Environment
-from rlbench.task_environment import TaskEnvironment
-from rlbench.observation_config import ObservationConfig
-
-from failgen.utils import name_to_class
-
-
-class RLBenchContext:
-    env: Environment
-    task_env: TaskEnvironment
-    frames: Dict[str, List[np.ndarray]]
-
-    def __init__(self, env: Environment, task_env: TaskEnvironment):
-        self.env = env
-        self.task_env = task_env
-        self.frames = dict(
-            front=[],
-            overhead=[],
-            left_shoulder=[],
-            right_shoulder=[],
-        )
-
-    def save_frames(self, save_folder: Path) -> None:
-        for cam_name in self.frames.keys():
-            for idx, frame in enumerate(self.frames[cam_name]):
-                pil_image = Image.fromarray(frame)
-                pil_image.save(save_folder / f"{cam_name}_{idx}.png")
-
-    def reset(self):
-        self.frames = dict(
-            front=[],
-            overhead=[],
-            left_shoulder=[],
-            right_shoulder=[],
-        )
+FAILURES_LIST: List[str] = [
+    GraspFailure.FAILURE_TYPE,
+    SlipFailure.FAILURE_TYPE,
+    RotationXFailure.FAILURE_TYPE,
+    RotationYFailure.FAILURE_TYPE,
+    RotationZFailure.FAILURE_TYPE,
+    TranslationXFailure.FAILURE_TYPE,
+    TranslationYFailure.FAILURE_TYPE,
+    TranslationZFailure.FAILURE_TYPE,
+    NoRotationFailure.FAILURE_TYPE,
+    WrongSequenceFailure.FAILURE_TYPE,
+    WrongObjectFailure.FAILURE_TYPE,
+]
 
 
-rlbench_ctx: Optional[RLBenchContext] = None
+def run_get_failures(
+    task_name: str,
+    fail_type: str,
+    num_episodes: int,
+    max_tries: int,
+    save_video: bool,
+) -> None:
+    env_wrapper = FailGenEnvWrapper(
+        task_name=task_name,
+        headless=True,
+        record=save_video,
+        save_data=True,
+    )
 
+    # Set current failure type
+    has_failtype = False
+    target_fail_obj: Optional[IFailure] = None
+    for fail_obj in env_wrapper.manager._failures:
+        if fail_obj.failure_type == fail_type:
+            fail_obj.set_enabled(True)
+            has_failtype = True
+            target_fail_obj = fail_obj
+        else:
+            fail_obj.set_enabled(False)
 
-def on_waypoint(_: Waypoint) -> None:
-    global rlbench_ctx
-
-    if rlbench_ctx is None:
+    if not has_failtype:
+        print(f"Skipping task {task_name} and fail {fail_type}")
+        env_wrapper.shutdown()
         return
 
-    obs = rlbench_ctx.task_env.get_observation()
-    rlbench_ctx.frames["front"].append(obs.front_rgb)
-    rlbench_ctx.frames["overhead"].append(obs.overhead_rgb)
-    rlbench_ctx.frames["left_shoulder"].append(obs.left_shoulder_rgb)
-    rlbench_ctx.frames["right_shoulder"].append(obs.right_shoulder_rgb)
+    print(
+        f"Starting demo collection for task: {task_name} and fail: {fail_type}"
+    )
+
+    # for i in range(num_episodes):
+    #     env_wrapper.reset()
+    #     attempts = max_tries
+    #     while attempts > 0:
+    #         demo, success = env_wrapper.get_failure()
+    #         if demo is not None and not success:
+    #             env_wrapper.save_failure_ext(i, fail_type, demo)
+    #             env_wrapper.save_video(f"vid_{task_name}_{fail_type}_{i}.mp4")
+    #             break
+    #         else:
+    #             attempts -= 1
+    #     if attempts <= 0:
+    #       print(f"Got an issue with task: {task_name}, failure: {fail_type}")
+    #     else:
+    #         print(f"Saved episode {i+1} / {num_episodes}")
+    # print(
+    #   f"Recorded {num_episodes} for task {task_name} and failure: {fail_type}"
+    # )
+
+    # Wrong-object failures are a whole different set from normal failures, so
+    # will handle data recording in a separate way
+    if fail_type == WrongObjectFailure.FAILURE_TYPE:
+        for i in range(num_episodes):
+            env_wrapper.reset()
+            attempts = max_tries
+            while attempts > 0:
+                demo, success = env_wrapper.get_failure()
+                if demo is not None and not success:
+                    env_wrapper.save_cameras(i, fail_type)
+                    env_wrapper.save_failure_ext(i, fail_type, demo)
+                    env_wrapper.save_video(
+                        f"vid_{task_name}_{fail_type}_{i}.mp4"
+                    )
+                    break
+                else:
+                    attempts -= 1
+            if attempts <= 0:
+                print(
+                    f"Got an issue with task: {task_name}, failure: {fail_type}"
+                )
+            else:
+                print(f"Saved episode {i+1} / {num_episodes}")
+        print(
+            f"Saved {num_episodes} for task {task_name}, failure: {fail_type}"
+        )
+        return
+
+    assert target_fail_obj is not None
+    potential_waypoints = target_fail_obj.waypoints_indices
+
+    for wp_idx in potential_waypoints:
+        target_fail_obj.change_waypoint_fail_name(f"waypoint{wp_idx}")
+        print(f"Triying to collect from waypoint {wp_idx}")
+        for i in range(num_episodes):
+            env_wrapper.reset()
+            attempts = max_tries
+            while attempts > 0:
+                demo, success = env_wrapper.get_failure()
+                if demo is not None and not success:
+                    env_wrapper.save_cameras(i, fail_type, wp_idx)
+                    env_wrapper.save_failure_ext(i, fail_type, demo, wp_idx)
+                    env_wrapper.save_video(
+                        f"vid_{task_name}_{fail_type}_{i}.mp4"
+                    )
+                    break
+                else:
+                    attempts -= 1
+            if attempts <= 0:
+                print(
+                    f"Got an issue with task: {task_name}, failure: {fail_type}"
+                )
+            else:
+                print(f"Saved episode {i+1} / {num_episodes}")
+        print(
+            f"Saved {num_episodes} for task {task_name}, failure: {fail_type}, "
+            + f"waypoint-index: {wp_idx}"
+        )
+
+    env_wrapper.shutdown()
 
 
 def main() -> int:
@@ -74,87 +160,71 @@ def main() -> int:
         "--task",
         type=str,
         default="basketball_in_hoop",
-        help="The task to use for the data generation process",
+        help="The name of the task to load for this example",
     )
     parser.add_argument(
-        "--num-episodes",
-        type=int,
-        default=5,
-        help="The number of episodes to run the data-generator for",
-    )
-    parser.add_argument(
-        "--headless",
-        action="store_true",
-        help="Whether or not to run in headless mode",
-    )
-    parser.add_argument(
-        "--max-tries",
+        "--episodes",
         type=int,
         default=10,
-        help="The maximum number of times to try collecting a single demo",
+        help="The number of episodes to collect",
     )
     parser.add_argument(
-        "--output-folder",
-        type=str,
-        default="/net/nfs/prior/jiafei/test_repo/AHA-main/aha/Data_Generation/rlbench-failgen/data",
-        help="The location where to save the collected keyframes",
+        "--max_tries",
+        type=int,
+        default=10,
+        help="The maximum number of tries to test a single failure",
     )
-
-    global rlbench_ctx
+    parser.add_argument(
+        "--multiprocessing",
+        action="store_true",
+        help="Whether or not to use multiprocessing for data collection",
+    )
+    parser.add_argument(
+        "--video",
+        action="store_true",
+        help="Whether or not to save video recordings of the failures",
+    )
+    parser.add_argument(
+        "--failtype",
+        type=str,
+        default="",
+        help="The fail type to use for data collection of single failure"
+    )
 
     args = parser.parse_args()
 
-    task_name = args.task
-    task_folder = (Path(DIR_PATH) / "tasks").resolve()
+    global FAILURES_LIST
+    if args.failtype != "":
+        FAILURES_LIST = [args.failtype]
 
-    print(f"Collecting data from task {task_name}")
-
-    obs_config = ObservationConfig()
-    obs_config.set_all(False)
-    obs_config.front_camera.rgb = True
-    obs_config.front_camera.image_size = [256, 256]
-    obs_config.front_camera.render_mode = RenderMode.OPENGL3
-    obs_config.overhead_camera.rgb = True
-    obs_config.overhead_camera.image_size = [256, 256]
-    obs_config.overhead_camera.render_mode = RenderMode.OPENGL3
-    obs_config.left_shoulder_camera.rgb = True
-    obs_config.left_shoulder_camera.image_size = [256, 256]
-    obs_config.left_shoulder_camera.render_mode = RenderMode.OPENGL3
-    obs_config.right_shoulder_camera.rgb = True
-    obs_config.right_shoulder_camera.image_size = [256, 256]
-    obs_config.right_shoulder_camera.render_mode = RenderMode.OPENGL3
-
-    env = Environment(
-        action_mode=MoveArmThenGripper(
-            arm_action_mode=JointVelocity(), gripper_action_mode=Discrete()
-        ),
-        obs_config=obs_config,
-        headless=args.headless,
-    )
-    env.launch()
-
-    task_class = name_to_class(task_name, str(task_folder))
-    if task_class is None:
-        raise RuntimeError(f"Couldn't instantiate task '{task_name}'")
-    task_env = env.get_task(task_class)
-
-    rlbench_ctx = RLBenchContext(env, task_env)
-
-    for ep_idx in tqdm(range(args.num_episodes)):
-        rlbench_ctx.reset()
-        _ = task_env.get_failures(
-            amount=1,
-            max_attempts=args.max_tries,
-            callable_each_waypoint=on_waypoint,
-        )
-        save_folder = Path(args.output_folder) / task_name / f"episode_{ep_idx}"
-        save_folder.mkdir(parents=True, exist_ok=True)
-        rlbench_ctx.save_frames(save_folder)
+    if args.multiprocessing:
+        processes = [
+            Process(
+                target=run_get_failures,
+                args=(
+                    args.task,
+                    fail_type,
+                    args.episodes,
+                    args.max_tries,
+                    args.video,
+                ),
+            )
+            for fail_type in FAILURES_LIST
+        ]
+        [t.start() for t in processes]
+        [t.join() for t in processes]
+    else:
+        for fail_type in FAILURES_LIST:
+            run_get_failures(
+                task_name=args.task,
+                fail_type=fail_type,
+                num_episodes=args.episodes,
+                max_tries=args.max_tries,
+                save_video=args.video,
+            )
 
     return 0
 
 
-if __name__ == "__main__":
-    raise SystemExit(main())
 if __name__ == "__main__":
     raise SystemExit(main())
