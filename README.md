@@ -105,6 +105,8 @@ python /aha/Data_Generation/rlbench-failgen/examples/ex_failgen_data_collection.
 ## 🧠 Visual Instruction Finetuning
 
 > Training takes ~40 hours on 8 A100 GPUs (80GB).
+> 
+> AHA is instruction finetuned with RoboPoint codebase, so setup finetuning code with RoboPoint.
 
 Setup:
 
