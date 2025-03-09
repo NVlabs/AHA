@@ -8,6 +8,8 @@ from typing import Dict, List, Optional, Tuple, cast
 import numpy as np
 from moviepy import ImageSequenceClip
 from omegaconf import DictConfig, ListConfig, OmegaConf
+from PIL import Image
+
 from pyrep.const import RenderMode
 from pyrep.objects.dummy import Dummy
 from pyrep.objects.vision_sensor import VisionSensor
@@ -49,11 +51,13 @@ class FailGenEnvWrapper:
         save_data: bool = True,
         no_failures: bool = False,
         save_path: str = "",
+        save_keyframes_only: bool = False,
     ):
         self._task_name: str = task_name
         self._task_folder: str = task_folder
         self._record: bool = record
         self._custom_savepath: str = save_path
+        self._save_keyframes_only: bool = save_keyframes_only
 
         self._config_filepath = os.path.join(CONFIGS_DIR, task_name)
         self._config = OmegaConf.load(f"{self._config_filepath}.yaml")
@@ -114,6 +118,13 @@ class FailGenEnvWrapper:
             right_shoulder=[],
         )
 
+        self._keyframe_cameras = dict(
+            front=[],
+            overhead=[],
+            left_shoulder=[],
+            right_shoulder=[],
+        )
+
         if self._record:
             self._cam_cinematic_base = Dummy("cam_cinematic_base")
             self._cam_base_start_pose = self._cam_cinematic_base.get_pose()
@@ -160,6 +171,13 @@ class FailGenEnvWrapper:
         self._task_env.reset()
 
         self._cache_cameras = dict(
+            front=[],
+            overhead=[],
+            left_shoulder=[],
+            right_shoulder=[],
+        )
+
+        self._keyframe_cameras = dict(
             front=[],
             overhead=[],
             left_shoulder=[],
@@ -248,6 +266,9 @@ class FailGenEnvWrapper:
         save_demo(self._config.data, demo, episode_path)
 
     def save_video(self, filename: str) -> None:
+        if self._save_keyframes_only:
+            return
+
         if len(self._cache_video) > 0:
             check_and_make(self._savepath)
             rendered_clip = ImageSequenceClip(self._cache_video, fps=30)
@@ -256,6 +277,9 @@ class FailGenEnvWrapper:
             )
 
     def save_cameras(self, ep_idx: int, fail_type: str, wp_idx: int = -1) -> None:
+        if self._save_keyframes_only:
+            return
+
         if wp_idx == -1:
             task_savepath = os.path.join(
                 self._savepath, fail_type
@@ -280,6 +304,22 @@ class FailGenEnvWrapper:
             clip.write_videofile(
                 os.path.join(episode_path, f"vid_{cam_name}.mp4"), logger=None,
             )
+
+    def save_keyframe_data(self, ep_idx: int, fail_type: str, wp_idx: int = -1) -> None:
+        if not self._save_keyframes_only:
+            return
+
+        if wp_idx == -1:
+            task_savepath = os.path.join(self._custom_savepath, f"{self._task_name}_{fail_type}_episode{ep_idx}")
+        else:
+            task_savepath = os.path.join(self._custom_savepath, f"{self._task_name}_{fail_type}_wp{wp_idx}_episode{ep_idx}")
+
+        check_and_make(task_savepath)
+
+        for cam_name in self._keyframe_cameras.keys():
+            for idx, frame in enumerate(self._keyframe_cameras[cam_name]):
+                pil_image = Image.fromarray(frame)
+                pil_image.save(os.path.join(task_savepath, f"{cam_name}_{idx}.png"))
 
     def on_env_start(self, task: Task) -> None:
         self._manager.on_start(task)
@@ -307,11 +347,25 @@ class FailGenEnvWrapper:
             right_shoulder=[],
         )
 
+        self._keyframe_cameras = dict(
+            front=[],
+            overhead=[],
+            left_shoulder=[],
+            right_shoulder=[],
+        )
+
         if self._cam_cinematic_base and self._cam_base_start_pose is not None:
             self._cam_cinematic_base.set_pose(self._cam_base_start_pose)
 
     def on_env_waypoint(self, point: Waypoint) -> None:
         self._manager.on_waypoint(point)
+
+        if self._save_keyframes_only:
+            obs = self._task_env.get_observation()
+            self._keyframe_cameras["front"].append(obs.front_rgb)
+            self._keyframe_cameras["overhead"].append(obs.overhead_rgb)
+            self._keyframe_cameras["left_shoulder"].append(obs.left_shoulder_rgb)
+            self._keyframe_cameras["right_shoulder"].append(obs.right_shoulder_rgb)
 
     def on_env_waypoint_end(self, point: Waypoint) -> None:
         self._keypoints_frames.append(self._step_counter)
@@ -322,6 +376,9 @@ class FailGenEnvWrapper:
     def on_env_step(self, obs: Observation) -> None:
         self._step_counter += 1
         self._manager.on_step()
+
+        if self._save_keyframes_only:
+            return
 
         self._cache_cameras["front"].append(obs.front_rgb)
         self._cache_cameras["overhead"].append(obs.overhead_rgb)
@@ -341,3 +398,4 @@ class FailGenEnvWrapper:
                     255,
                 )
             )
+
