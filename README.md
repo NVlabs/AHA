@@ -74,7 +74,7 @@ pip install -r requirements.txt
 pip install .
 ```
 
-### 4. Generating Failure Demos via FailGen
+### 4. FailGen
 
 ```bash
 cd aha/Data_Generation/rlbench-failgen
@@ -82,7 +82,23 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-Generate failure trajectories with keyframes only:
+Folder structure till here:
+.
+├── aha/
+│   └── ...
+├── PyRep/
+│   └── ...
+├── RLBench/
+│   └── ...
+├── LICENSE
+├── README.md
+├── add_license_header.py
+├── aha-teaser.gif
+├── requirements-docs.txt
+└── update.py
+
+
+### 5. Generate failure trajectories with keyframes only:
 
 ```bash
 python /aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py \
