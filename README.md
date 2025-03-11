@@ -83,19 +83,19 @@ pip install -e .
 ```
 
 Folder structure till here:
-.
-├── aha/
-│   └── ...
-├── PyRep/
-│   └── ...
-├── RLBench/
-│   └── ...
-├── LICENSE
-├── README.md
-├── add_license_header.py
-├── aha-teaser.gif
-├── requirements-docs.txt
-└── update.py
+- **.**
+  - **aha/**
+    - ...
+  - **PyRep/**
+    - ...
+  - **RLBench/**
+    - ...
+  - **LICENSE**
+  - **README.md**
+  - **add_license_header.py**
+  - **aha-teaser.gif**
+  - **requirements-docs.txt**
+  - **update.py**
 
 
 ### 5. Generate failure trajectories with keyframes only:
