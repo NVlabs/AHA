@@ -123,13 +123,6 @@ Setup:
 
 ```bash
 git clone https://github.com/wentaoyuan/RoboPoint.git
-conda create -n robopoint python=3.10 -y
-conda activate robopoint
-pip install --upgrade pip  # Enable PEP 660 support
-
-# Optional: if you prefer to use conda's CUDA
-conda install -c nvidia cuda=12.1 -y
-
 pip install -e .
 pip install -e ".[train]"  # Only needed for training
 pip install flash-attn --no-build-isolation
