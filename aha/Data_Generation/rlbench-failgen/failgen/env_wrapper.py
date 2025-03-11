@@ -1,6 +1,13 @@
-# Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-#
-# Licensed under the NVIDIA Source Code License [see LICENSE for details].
+"""
+Module for FailGenEnvWrapper.
+
+This module provides a wrapper around the RLBench environment for generating failure cases and demos.
+It supports functionalities such as recording videos, saving camera data, handling environment resets,
+and managing demonstration data.
+
+Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+Licensed under the NVIDIA Source Code License [see LICENSE for details].
+"""
 
 import os
 from typing import Dict, List, Optional, Tuple, cast
@@ -42,6 +49,37 @@ MAX_FAILURE_ATTEMPTS = 5
 
 
 class FailGenEnvWrapper:
+    """
+    A wrapper for the RLBench environment that integrates failure generation, recording, and demonstration saving.
+
+    This class handles environment initialization, task setup, recording video and camera data, and
+    managing failure/success demos for a given task. It uses a variety of configurations and manages internal
+    caches for video frames, keyframes, and camera recordings.
+    
+    Attributes:
+        _task_name (str): Name of the task.
+        _task_folder (str): Folder containing the task files.
+        _record (bool): Flag to enable video recording.
+        _custom_savepath (str): Custom path to save outputs.
+        _save_keyframes_only (bool): Flag to indicate if only keyframe images should be saved.
+        _config (DictConfig): Loaded configuration for the task.
+        _savepath (str): Final path where demos and recordings will be saved.
+        _env (Environment): The RLBench environment instance.
+        _task_env (Task): The specific task environment.
+        _obj_base: Base object of the task.
+        _manager (Manager): Manager instance for failure injection.
+        _keypoints_frames (List[int]): List of step indices at which keypoints were recorded.
+        _keypoints_frames_dict (Dict[str, int]): Dictionary mapping waypoint names to step indices.
+        _step_counter (int): Counter tracking the number of steps taken.
+        _cache_video (List[np.ndarray]): Cache of recorded video frames.
+        _record_camera (Optional[VisionSensor]): Camera used for recording a cinematic video.
+        _record_motion (Optional[ICameraMotion]): Camera motion controller.
+        _cam_cinematic_base (Optional[Dummy]): Base dummy object for cinematic camera movement.
+        _cam_base_start_pose (Optional[np.ndarray]): Initial pose of the cinematic camera base.
+        _cache_cameras (dict): Dictionary caching frames from various camera views.
+        _keyframe_cameras (dict): Dictionary caching keyframe images for various camera views.
+    """
+
     def __init__(
         self,
         task_name: str,
@@ -53,6 +91,19 @@ class FailGenEnvWrapper:
         save_path: str = "",
         save_keyframes_only: bool = False,
     ):
+        """
+        Initialize the FailGenEnvWrapper.
+
+        Args:
+            task_name (str): Name of the task to be executed.
+            task_folder (str, optional): Folder where the task modules reside. Defaults to RLBENCH_TASKPY_FOLDER.
+            headless (bool, optional): Run the environment in headless mode. Defaults to True.
+            record (bool, optional): Enable recording of a cinematic video. Defaults to False.
+            save_data (bool, optional): Flag to determine if high-dimensional data should be saved. Defaults to True.
+            no_failures (bool, optional): If True, disables failure injection. Defaults to False.
+            save_path (str, optional): Custom save path for outputs. Defaults to an empty string.
+            save_keyframes_only (bool, optional): If True, only keyframe images are saved rather than full videos. Defaults to False.
+        """
         self._task_name: str = task_name
         self._task_folder: str = task_folder
         self._record: bool = record
@@ -152,18 +203,42 @@ class FailGenEnvWrapper:
 
     @property
     def config(self) -> DictConfig:
+        """
+        Get the configuration for the current task.
+
+        Returns:
+            DictConfig: The OmegaConf configuration loaded for the task.
+        """
         return cast(DictConfig, self._config)
 
     @property
     def manager(self) -> Manager:
+        """
+        Get the Manager responsible for failure injection.
+
+        Returns:
+            Manager: The failure injection manager.
+        """
         return self._manager
 
     @property
     def robot(self) -> Robot:
+        """
+        Get the robot instance from the environment.
+
+        Returns:
+            Robot: The robot object within the current RLBench scene.
+        """
         assert self._env._scene is not None
         return self._env._scene.robot
 
     def reset(self):
+        """
+        Reset the environment, manager, and cached data.
+
+        This method resets the step counter, clears keypoints and video caches, resets the manager,
+        and resets the task environment and camera poses to their initial state.
+        """
         self._step_counter = 0
         self._keypoints_frames.clear()
         self._keypoints_frames_dict.clear()
@@ -190,9 +265,22 @@ class FailGenEnvWrapper:
             self._cam_cinematic_base.set_pose(self._cam_base_start_pose)
 
     def shutdown(self) -> None:
+        """
+        Shutdown the RLBench environment.
+
+        This method ensures that the environment is properly closed.
+        """
         self._env.shutdown()
 
     def get_success(self) -> Optional[Demo]:
+        """
+        Retrieve a successful demonstration from the task environment.
+
+        The method requests one successful demo, running the task with a callback at each step.
+
+        Returns:
+            Optional[Demo]: A Demo instance representing a successful run, or None if unsuccessful.
+        """
         (demo,) = self._task_env.get_demos(
             amount=1,
             live_demos=True,
@@ -203,6 +291,15 @@ class FailGenEnvWrapper:
         return demo
 
     def get_failure(self) -> Tuple[Optional[Demo], bool]:
+        """
+        Retrieve a failure demonstration from the task environment.
+
+        The method attempts to generate a failure demo while executing various callbacks during the task.
+        In case of maximum failure attempts, it prints a warning and retries.
+
+        Returns:
+            Tuple[Optional[Demo], bool]: A tuple containing the Demo instance (or None) and a success flag.
+        """
         demo: Optional[Demo] = None
         try:
             (demo,), success = self._task_env.get_failures(
@@ -229,6 +326,15 @@ class FailGenEnvWrapper:
         return demo, success
 
     def save_failure(self, ep_idx: int, demo: Demo) -> None:
+        """
+        Save a failure demonstration to disk.
+
+        The demo is saved under a structured folder hierarchy based on the task name and episode index.
+
+        Args:
+            ep_idx (int): The episode index.
+            demo (Demo): The demonstration instance to be saved.
+        """
         task_savepath = os.path.join(
             self._config.data.save_path, self._task_name
         )
@@ -246,6 +352,17 @@ class FailGenEnvWrapper:
     def save_failure_ext(
         self, ep_idx: int, fail_type: str, demo: Demo, wp_idx: int = -1
     ) -> None:
+        """
+        Save an extended failure demonstration with failure type and optional waypoint index.
+
+        The demo is saved in a folder that distinguishes the failure type and, if applicable, the waypoint index.
+
+        Args:
+            ep_idx (int): The episode index.
+            fail_type (str): A string representing the type of failure.
+            demo (Demo): The demonstration instance to be saved.
+            wp_idx (int, optional): Waypoint index if the failure is associated with a specific waypoint. Defaults to -1.
+        """
         if wp_idx == -1:
             task_savepath = os.path.join(
                 self._config.data.save_path, self._task_name, fail_type
@@ -268,6 +385,15 @@ class FailGenEnvWrapper:
         save_demo(self._config.data, demo, episode_path)
 
     def save_video(self, filename: str) -> None:
+        """
+        Save the recorded video from cached frames to a file.
+
+        If saving only keyframes is enabled, this method will do nothing.
+        Otherwise, it renders the cached video frames into a video clip and writes it to disk.
+
+        Args:
+            filename (str): The name of the video file to save.
+        """
         if self._save_keyframes_only:
             return
 
@@ -279,6 +405,16 @@ class FailGenEnvWrapper:
             )
 
     def save_cameras(self, ep_idx: int, fail_type: str, wp_idx: int = -1) -> None:
+        """
+        Save videos from multiple camera views to disk.
+
+        This method saves camera recordings from various perspectives into separate video files for a given episode.
+
+        Args:
+            ep_idx (int): The episode index.
+            fail_type (str): A string representing the type of failure.
+            wp_idx (int, optional): Waypoint index if the failure is associated with a specific waypoint. Defaults to -1.
+        """
         if self._save_keyframes_only:
             return
 
@@ -308,6 +444,17 @@ class FailGenEnvWrapper:
             )
 
     def save_keyframe_data(self, ep_idx: int, fail_type: str, wp_idx: int = -1) -> None:
+        """
+        Save keyframe images from camera recordings to disk.
+
+        This method is used when only keyframe data is to be saved (i.e., not full videos). It writes
+        the keyframe images for selected camera views as PNG files.
+
+        Args:
+            ep_idx (int): The episode index.
+            fail_type (str): A string representing the type of failure.
+            wp_idx (int, optional): Waypoint index if the failure is associated with a specific waypoint. Defaults to -1.
+        """
         if not self._save_keyframes_only:
             return
 
@@ -324,9 +471,22 @@ class FailGenEnvWrapper:
                 pil_image.save(os.path.join(task_savepath, f"{cam_name}_{idx}.png"))
 
     def on_env_start(self, task: Task) -> None:
+        """
+        Callback executed at the start of the environment run.
+
+        This method triggers the manager's start handling for the given task.
+        
+        Args:
+            task (Task): The task instance that is starting.
+        """
         self._manager.on_start(task)
 
     def on_env_end(self, _) -> None:
+        """
+        Callback executed at the end of the environment run.
+
+        Currently a placeholder for any cleanup or final actions that need to occur when the task ends.
+        """
         # if len(self._cache_video) > 0 and not success:
         #     check_and_make(self._savepath)
         #     rendered_clip = ImageSequenceClip(self._cache_video, fps=30)
@@ -336,6 +496,11 @@ class FailGenEnvWrapper:
         ...
 
     def on_env_reset(self) -> None:
+        """
+        Callback executed on environment reset.
+
+        This method clears caches, resets the step counter and manager, and resets camera positions.
+        """
         self._step_counter = 0
         self._keypoints_frames.clear()
         self._keypoints_frames_dict.clear()
@@ -361,6 +526,15 @@ class FailGenEnvWrapper:
             self._cam_cinematic_base.set_pose(self._cam_base_start_pose)
 
     def on_env_waypoint(self, point: Waypoint) -> None:
+        """
+        Callback executed at a waypoint during the task.
+
+        This method triggers the manager's waypoint handling. Additionally, if only keyframe data is saved,
+        it captures images from multiple camera views.
+        
+        Args:
+            point (Waypoint): The current waypoint in the task.
+        """
         self._manager.on_waypoint(point)
 
         if self._save_keyframes_only:
@@ -372,12 +546,29 @@ class FailGenEnvWrapper:
             self._keyframe_cameras["wrist"].append(obs.wrist_rgb)
 
     def on_env_waypoint_end(self, point: Waypoint) -> None:
+        """
+        Callback executed at the end of a waypoint.
+
+        This method records the current step counter as a keypoint and maps the waypoint's name to this step.
+        
+        Args:
+            point (Waypoint): The waypoint that has just ended.
+        """
         self._keypoints_frames.append(self._step_counter)
         self._keypoints_frames_dict[
             point._waypoint.get_name()
         ] = self._step_counter
 
     def on_env_step(self, obs: Observation) -> None:
+        """
+        Callback executed on each environment step.
+
+        This method increments the step counter, notifies the manager of the step, caches camera frames,
+        and updates the cinematic recording if enabled.
+        
+        Args:
+            obs (Observation): The observation data from the current environment step.
+        """
         self._step_counter += 1
         self._manager.on_step()
 
