@@ -71,7 +71,7 @@ git clone -b peract https://github.com/MohitShridhar/RLBench.git
 cd RLBench
 python update.py
 pip install -r requirements.txt
-python setup.py develop
+pip install .
 ```
 
 ### 4. Generating Failure Demos via FailGen
