@@ -37,20 +37,12 @@ conda install -c nvidia cuda=12.1 -y
 ### 2. PyRep and Coppelia Simulator
 
 Download CoppeliaSim v4.1:
-- [Ubuntu 16.04](https://downloads.coppeliarobotics.com/V4_1_0/CoppeliaSim_Player_V4_1_0_Ubuntu16_04.tar.xz)
-- [Ubuntu 18.04](https://downloads.coppeliarobotics.com/V4_1_0/CoppeliaSim_Player_V4_1_0_Ubuntu18_04.tar.xz)
+- [Ubuntu 16.04](https://downloads.coppeliarobotics.com/V4_1_0/CoppeliaSim_Edu_V4_1_0_Ubuntu16_04.tar.xz)
+- [Ubuntu 18.04](https://downloads.coppeliarobotics.com/V4_1_0/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04.tar.xz)
 - [Ubuntu 20.04](https://downloads.coppeliarobotics.com/V4_1_0/CoppeliaSim_Edu_V4_1_0_Ubuntu20_04.tar.xz)
 
-Install PyRep:
-
-```bash
-git clone https://github.com/stepjam/PyRep.git
-cd PyRep
-pip install -r requirements.txt
-pip install .
-```
-
-Add to your `~/.bashrc`:
+Extract it somewhere in your system, and set the following environemnt variables
+(add it to `.bashrc` to make changes last):
 
 ```bash
 export COPPELIASIM_ROOT=/path/to/coppeliasim
@@ -61,6 +53,15 @@ export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT
 Remember to run `source ~/.bashrc` after adding these lines.
 
 > ⚠️ **Warning**: CoppeliaSim might cause conflicts with ROS workspaces.
+
+Install PyRep:
+
+```bash
+git clone https://github.com/stepjam/PyRep.git
+cd PyRep
+pip install -r requirements.txt
+pip install .
+```
 
 ### 3. RLBench
 
