@@ -68,8 +68,8 @@ Install the fork:
 
 ```bash
 git clone -b peract https://github.com/MohitShridhar/RLBench.git
-cd RLBench
 python update.py
+cd RLBench
 pip install -r requirements.txt
 pip install .
 ```
