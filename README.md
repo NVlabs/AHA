@@ -82,7 +82,7 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-Folder structure till here:
+Folders structure till here:
 - **
   - **aha/**
     - ...
