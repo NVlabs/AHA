@@ -25,9 +25,13 @@ AHA is an open-source VLM specifically designed to detect and reason about failu
 
 ```bash
 git clone https://github.com/NVlabs/AHA.git
-cd AHA
-conda create -n aha python=3.9
+conda create -n aha python=3.10 -y
 conda activate aha
+
+pip install --upgrade pip  # enable PEP 660 support
+
+# this is optional if you prefer to system built-in nvcc.
+conda install -c nvidia cuda=12.1 -y
 pip install -r requirements.txt
 ```
 
