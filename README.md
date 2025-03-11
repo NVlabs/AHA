@@ -105,9 +105,8 @@ For headless servers:
 ```bash
 xvfb-run -a -s "-screen 0 1400x900x24" \
   python /aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py \
-  --num-episodes 1 \
+  --episodes 1 \
   --max-tries 3 \
-  --output-folder <OUTPUT_DIR>
 ```
 
 Generate failure trajectories with all frames:
