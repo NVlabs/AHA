@@ -123,6 +123,7 @@ class FailGenEnvWrapper:
             overhead=[],
             left_shoulder=[],
             right_shoulder=[],
+            wrist=[],
         )
 
         if self._record:
@@ -182,6 +183,7 @@ class FailGenEnvWrapper:
             overhead=[],
             left_shoulder=[],
             right_shoulder=[],
+            wrist=[],
         )
 
         if self._cam_cinematic_base and self._cam_base_start_pose is not None:
@@ -316,7 +318,7 @@ class FailGenEnvWrapper:
 
         check_and_make(task_savepath)
 
-        for cam_name in self._keyframe_cameras.keys():
+        for cam_name in ["front", "overhead", "wrist"]:
             for idx, frame in enumerate(self._keyframe_cameras[cam_name]):
                 pil_image = Image.fromarray(frame)
                 pil_image.save(os.path.join(task_savepath, f"{cam_name}_{idx}.png"))
@@ -352,6 +354,7 @@ class FailGenEnvWrapper:
             overhead=[],
             left_shoulder=[],
             right_shoulder=[],
+            wrist=[],
         )
 
         if self._cam_cinematic_base and self._cam_base_start_pose is not None:
@@ -366,6 +369,7 @@ class FailGenEnvWrapper:
             self._keyframe_cameras["overhead"].append(obs.overhead_rgb)
             self._keyframe_cameras["left_shoulder"].append(obs.left_shoulder_rgb)
             self._keyframe_cameras["right_shoulder"].append(obs.right_shoulder_rgb)
+            self._keyframe_cameras["wrist"].append(obs.wrist_rgb)
 
     def on_env_waypoint_end(self, point: Waypoint) -> None:
         self._keypoints_frames.append(self._step_counter)
@@ -398,4 +402,3 @@ class FailGenEnvWrapper:
                     255,
                 )
             )
-
