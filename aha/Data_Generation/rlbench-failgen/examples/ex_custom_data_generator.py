@@ -2,6 +2,24 @@
 #
 # Licensed under the NVIDIA Source Code License [see LICENSE for details].
 
+
+"""
+Module to collect failure demonstration data for simulation tasks.
+
+This module is designed to work with the FailGen framework to generate failure
+demonstrations from various failure types. It provides functionality to collect
+episodes of failure data, save keyframe data, and manage different failure modes,
+with support for multiprocessing if enabled.
+
+The primary functions include:
+    - run_get_failures: Executes data collection for a specified task and failure type.
+    - main: Parses command-line arguments and initiates the data collection process.
+
+Usage:
+    Run the script from the command line as follows:
+        python script_name.py --task <task_name> --episodes <num_episodes> --max_tries <max_attempts>
+            [--multiprocessing] [--failtype <failure_type>] [--savepath <save_directory>]
+"""
 import argparse
 from multiprocessing import Process
 from typing import List, Optional
@@ -37,7 +55,26 @@ FAILURES_LIST: List[str] = [
     WrongSequenceFailure.FAILURE_TYPE,
     WrongObjectFailure.FAILURE_TYPE,
 ]
+"""
+    Collect failure demonstration data for a given task and failure type.
 
+    This function sets up a simulation environment for the specified task and then
+    enables only the provided failure type while disabling all others. It attempts to
+    collect a specified number of failure demonstration episodes. For each episode,
+    the environment is reset, and a failure demonstration is captured within a given
+    number of tries. Special handling is implemented for the 'WrongObjectFailure' type,
+    which uses a separate data recording approach.
+
+    Parameters:
+        task_name (str): Name of the task for which to collect the demonstration.
+        fail_type (str): The failure type to trigger and collect data for.
+        num_episodes (int): The number of episodes (data samples) to collect.
+        max_tries (int): The maximum number of attempts per episode to trigger the failure.
+        save_path (str): The directory path where the collected keyframe data will be saved.
+
+    Returns:
+        None
+    """
 
 def run_get_failures(
     task_name: str,
@@ -127,7 +164,18 @@ def run_get_failures(
         )
 
     env_wrapper.shutdown()
+"""
+Entry point for the failure data collection script.
 
+This function parses command-line arguments to determine the parameters for data
+collection, including task name, number of episodes, maximum tries per episode,
+whether to use multiprocessing, failure type, and the save path. Based on these
+arguments, it then initiates the data collection process either in a sequential
+or multiprocessing mode for each failure type specified.
+
+Returns:
+    int: An exit status code (0 indicates successful execution).
+"""
 
 def main() -> int:
     parser = argparse.ArgumentParser()
