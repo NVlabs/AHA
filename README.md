@@ -93,6 +93,7 @@ Folders structure till here:
   - ....
 
 ### 5. Generate failure trajectories with keyframes only:
+For specific tasks:
 
 ```bash
 python ./aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py \
@@ -110,6 +111,12 @@ xvfb-run -a -s "-screen 0 1400x900x24" \
   --episodes 1 \
   --max_tries 1 \
   --savepath <Output Dir>
+```
+
+Generate all 80 tasks as in the paper:
+```bash
+cd ..
+bash examples/ex_custom_data_generator.sh
 ```
 
 
