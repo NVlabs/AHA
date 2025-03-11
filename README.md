@@ -95,7 +95,7 @@ Folders structure till here:
 ### 5. Generate failure trajectories with keyframes only:
 
 ```bash
-python /aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py \
+python ./aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py \
   --task basketball_in_hoop \
   --episodes 1 \
   --max_tries 1 \
