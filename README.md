@@ -96,23 +96,22 @@ Folders structure till here:
 
 ```bash
 python /aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py \
-  --num-episodes 1 \
-  --max-tries 3 \
-  --output-folder <OUTPUT_DIR>
+  --task basketball_in_hoop \
+  --episodes 1 \
+  --max_tries 1 \
+  --savepath <Output Dir>
 ```
 
 For headless servers:
 ```bash
 xvfb-run -a -s "-screen 0 1400x900x24" \
   python /aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py \
+  --task basketball_in_hoop \
   --episodes 1 \
-  --max-tries 3 \
+  --max_tries 1 \
+  --savepath <Output Dir>
 ```
 
-Generate failure trajectories with all frames:
-```bash
-python /aha/Data_Generation/rlbench-failgen/examples/ex_failgen_data_collection.py
-```
 
 ## 🧠 Visual Instruction Finetuning
 
