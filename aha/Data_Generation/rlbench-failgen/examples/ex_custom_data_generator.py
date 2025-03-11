@@ -44,13 +44,15 @@ def run_get_failures(
     fail_type: str,
     num_episodes: int,
     max_tries: int,
-    save_video: bool,
+    save_path: str,
 ) -> None:
     env_wrapper = FailGenEnvWrapper(
         task_name=task_name,
         headless=True,
-        record=save_video,
+        record=False,
         save_data=True,
+        save_path=save_path,
+        save_keyframes_only=True,
     )
 
     # Set current failure type
@@ -73,25 +75,6 @@ def run_get_failures(
         f"Starting demo collection for task: {task_name} and fail: {fail_type}"
     )
 
-    # for i in range(num_episodes):
-    #     env_wrapper.reset()
-    #     attempts = max_tries
-    #     while attempts > 0:
-    #         demo, success = env_wrapper.get_failure()
-    #         if demo is not None and not success:
-    #             env_wrapper.save_failure_ext(i, fail_type, demo)
-    #             env_wrapper.save_video(f"vid_{task_name}_{fail_type}_{i}.mp4")
-    #             break
-    #         else:
-    #             attempts -= 1
-    #     if attempts <= 0:
-    #       print(f"Got an issue with task: {task_name}, failure: {fail_type}")
-    #     else:
-    #         print(f"Saved episode {i+1} / {num_episodes}")
-    # print(
-    #   f"Recorded {num_episodes} for task {task_name} and failure: {fail_type}"
-    # )
-
     # Wrong-object failures are a whole different set from normal failures, so
     # will handle data recording in a separate way
     if fail_type == WrongObjectFailure.FAILURE_TYPE:
@@ -101,11 +84,7 @@ def run_get_failures(
             while attempts > 0:
                 demo, success = env_wrapper.get_failure()
                 if demo is not None and not success:
-                    env_wrapper.save_cameras(i, fail_type)
-                    env_wrapper.save_failure_ext(i, fail_type, demo)
-                    env_wrapper.save_video(
-                        f"vid_{task_name}_{fail_type}_{i}.mp4"
-                    )
+                    env_wrapper.save_keyframe_data(i, fail_type)
                     break
                 else:
                     attempts -= 1
@@ -132,11 +111,7 @@ def run_get_failures(
             while attempts > 0:
                 demo, success = env_wrapper.get_failure()
                 if demo is not None and not success:
-                    env_wrapper.save_cameras(i, fail_type, wp_idx)
-                    env_wrapper.save_failure_ext(i, fail_type, demo, wp_idx)
-                    env_wrapper.save_video(
-                        f"vid_{task_name}_{fail_type}_{i}.mp4"
-                    )
+                    env_wrapper.save_keyframe_data(i, fail_type, wp_idx)
                     break
                 else:
                     attempts -= 1
@@ -165,7 +140,7 @@ def main() -> int:
     parser.add_argument(
         "--episodes",
         type=int,
-        default=10,
+        default=1,
         help="The number of episodes to collect",
     )
     parser.add_argument(
@@ -180,15 +155,16 @@ def main() -> int:
         help="Whether or not to use multiprocessing for data collection",
     )
     parser.add_argument(
-        "--video",
-        action="store_true",
-        help="Whether or not to save video recordings of the failures",
-    )
-    parser.add_argument(
         "--failtype",
         type=str,
         default="",
         help="The fail type to use for data collection of single failure"
+    )
+    parser.add_argument(
+        "--savepath",
+        type=str,
+        default="",
+        help="The path to the folder where to save all the data",
     )
 
     args = parser.parse_args()
@@ -206,7 +182,7 @@ def main() -> int:
                     fail_type,
                     args.episodes,
                     args.max_tries,
-                    args.video,
+                    args.savepath,
                 ),
             )
             for fail_type in FAILURES_LIST
@@ -220,7 +196,7 @@ def main() -> int:
                 fail_type=fail_type,
                 num_episodes=args.episodes,
                 max_tries=args.max_tries,
-                save_video=args.video,
+                save_path=args.savepath,
             )
 
     return 0
