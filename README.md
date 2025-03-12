@@ -83,7 +83,7 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-Folders structure till here:
+After installing the packages, the structure is now:
 - **
   - **aha/**
     - ...
@@ -107,7 +107,7 @@ python ./aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.p
 For headless servers:
 ```bash
 xvfb-run -a -s "-screen 0 1400x900x24" \
-  python /aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py \
+  python ./aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.py \
   --task basketball_in_hoop \
   --episodes 1 \
   --max_tries 1 \
@@ -116,8 +116,7 @@ xvfb-run -a -s "-screen 0 1400x900x24" \
 
 Generate all 80 tasks as in the paper:
 ```bash
-cd ..
-bash examples/ex_custom_data_generator.sh
+bash ./aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.sh
 ```
 
 
