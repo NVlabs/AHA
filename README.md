@@ -145,7 +145,47 @@ pip install -e ".[train]"  # Only needed for training
 pip install flash-attn --no-build-isolation
 ```
 
-Merge the AHA failure dataset with the [Co-training data](https://huggingface.co/datasets/wentao-yuan/robopoint-data) and run the training scripts found under `scripts` folder.
+Merge the AHA failure dataset generated previously with the [Co-training data](https://huggingface.co/datasets/wentao-yuan/robopoint-data).
+
+### Download pretrained projector weights
+
+We use pretrained projector weights from [LLaVA](https://github.com/haotian-liu/LLaVA). The projector is trained on image-text pairs from the 558K subset of the LAION-CC-SBU dataset with BLIP captions (see [here](https://huggingface.co/datasets/liuhaotian/LLaVA-Pretrain)). When using these projector weights, please make sure that the vision encoder and the projector type are set correctly.
+
+For CLIP-L-336px vision encoder,
+```
+--vision_tower openai/clip-vit-large-patch14-336
+```
+
+For MLP-2x projector,
+```
+--mm_projector_type mlp2x_gelu
+```
+
+For Linear projector,
+```
+--mm_projector_type linear
+```
+
+| Base LLM | Vision Encoder | Projection | Pretrain Data | Download |
+|----------|----------------|------------|---------------|----------|
+| Vicuna-13B-v1.5 | CLIP-L-336px | MLP-2x | LCS-558K | [projector](https://huggingface.co/liuhaotian/llava-v1.5-mlp2x-336px-pretrain-vicuna-13b-v1.5) |
+| Vicuna-7B-v1.5 | CLIP-L-336px | MLP-2x | LCS-558K | [projector](https://huggingface.co/liuhaotian/llava-v1.5-mlp2x-336px-pretrain-vicuna-7b-v1.5) |
+| LLaMA-2-13B-Chat | CLIP-L-336px | Linear | LCS-558K | [projector](https://huggingface.co/liuhaotian/llava-336px-pretrain-llama-2-13b-chat) |
+| LLaMA-2-7B-Chat | CLIP-L-336px | Linear | LCS-558K | [projector](https://huggingface.co/liuhaotian/llava-336px-pretrain-llama-2-7b-chat) |
+
+If you are do not have enough GPU memory, you can reduce `BATCH_PER_GPU` and increase the `GRAD_ACC_STEPS` accordingly. Always keep the global batch size the same: `NUM_NODES` x `NUM_GPUS` x `BATCH_PER_GPU` x `GRAD_ACC_STEPS`.
+
+Hyperparameters used in instruction tuning are provided below.
+
+| Hyperparameter | Global Batch Size | Learning rate | Epochs | Max length | Weight decay |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| RoboPoint-v1-13B | 128 | 2e-5 | 1 | 2048 | 0 |
+
+```
+#For full finetuning of RoboPoint with AHA dataset via Vicuna 1.5
+bash ./RoboPoint/scripts/finetune_vicuna.sh 
+```
+
 
 ## 🙏 Acknowledgments
 We thank the following projects that parts of our code are derived from:
