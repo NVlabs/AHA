@@ -119,6 +119,16 @@ Generate all 80 tasks as in the paper:
 bash ./aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.sh
 ```
 
+After generating all of the tasks, you would need to run these to generate the json file for instruction fine-tuning. 
+
+```bash
+#Process the data generated into right format
+python ./aha/Data_Generation/rlbench-failgen/process_data.py /path/to/input_folder /path/to/output_folder
+
+#Format the processed data into json for finetuning.
+python ./aha/Data_Generation/rlbench-failgen/make_json.py /path/to/processed_data --output ./aha_training.json
+```
+
 
 ## 🧠 Visual Instruction Finetuning
 
