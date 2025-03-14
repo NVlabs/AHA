@@ -173,6 +173,8 @@ For Linear projector,
 | LLaMA-2-13B-Chat | CLIP-L-336px | Linear | LCS-558K | [projector](https://huggingface.co/liuhaotian/llava-336px-pretrain-llama-2-13b-chat) |
 | LLaMA-2-7B-Chat | CLIP-L-336px | Linear | LCS-558K | [projector](https://huggingface.co/liuhaotian/llava-336px-pretrain-llama-2-7b-chat) |
 
+### Training
+
 If you are do not have enough GPU memory, you can reduce `BATCH_PER_GPU` and increase the `GRAD_ACC_STEPS` accordingly. Always keep the global batch size the same: `NUM_NODES` x `NUM_GPUS` x `BATCH_PER_GPU` x `GRAD_ACC_STEPS`.
 
 Hyperparameters used in instruction tuning are provided below.
