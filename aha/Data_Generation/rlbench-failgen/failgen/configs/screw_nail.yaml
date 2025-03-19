@@ -1,7 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
-  # The size of the images to save
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data  # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
   renderer: opengl3
@@ -83,3 +82,52 @@ failures:
     name: bad_seq
     enabled: False
     waypoints: [0,4]
+
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [spawn_boundary]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      'grasp onto the screw driver',
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [spawn_boundary]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      'lift it up',
+      're-orient it up',
+      'move to pre-screw pose',
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [close_jar]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      'lift it up',
+      're-orient it up',
+      'move to pre-screw pose',
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [close_jar]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      'move to target pose',
+      'move to screwing pose',
+      'move to target',
+    ]
+  - task_no: 4
+    enabled: False
+    type: dummy
+    targets: [close_jar]
+    processes: [waypoint4, waypoint5]
+    task_description: [
+      'unscrew the nail'
+    ]

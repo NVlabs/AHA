@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -78,3 +78,87 @@ failures:
     name: bad_seq
     enabled: False
     waypoints: [8,10]
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "grasp onto the first chair",
+      "pick on the first chair"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "lift up the first chair",
+      "pick up the first chair"
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      "move to the target chair to stack"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "stack the chair"
+    ]
+  - task_no: 4
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint4, waypoint5]
+    task_description: [
+      "let go"
+    ]
+  - task_no: 5
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint5, waypoint6]
+    task_description: [
+      "retract back"
+    ]
+  - task_no: 6
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint6, waypoint7]
+    task_description: [
+      "pick up the second chair"
+    ]
+  - task_no: 7
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint7, waypoint8]
+    task_description: [
+      "lift up the chair"
+    ]
+  - task_no: 8
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint8, waypoint9]
+    task_description: [
+      "move to stacked chairs"
+    ]
+  - task_no: 9
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint9, waypoint10]
+    task_description: [
+      "stack the second chair"
+    ]

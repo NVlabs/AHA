@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -35,8 +35,8 @@ failures:
   - type: translation_x
     name: trans_x
     enabled: False
-    waypoints: [3]
-    range: [-0.75, 0.75]
+    waypoints: [2, 3, 4]
+    range: [-0.5, 0.5]
 
   - type: translation_y
     name: trans_y
@@ -77,9 +77,50 @@ failures:
     name: fail_slip
     enabled: False
     waypoints: [2]
-    fail_after: 15
+    fail_after: 5
 
   - type: wrong_sequence
     name: bad_seq
     enabled: False
     waypoints: [0, 3]
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "prepare and grasp onto the square hole block",
+      "grasp the square hole block",
+      "pick onto the square hole block"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "lift up the square hole block",
+      "retract back the gripper with the square hole block",
+      "pick up the square hole block"
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      "move the square hole block directly above the square peg",
+      "move the square block to the square peg",
+      "align the square block onto the peg"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "release the square block hole into the peg",
+      "insert the square block hole into the peg"
+    ]

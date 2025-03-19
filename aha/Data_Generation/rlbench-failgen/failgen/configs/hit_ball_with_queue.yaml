@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -83,3 +83,42 @@ failures:
     name: bad_seq
     enabled: False
     waypoints: [0,4]
+
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "grasp onto the queue stick",
+      "pick on the queue stick"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "lift up slightly",
+      "pull up slightly"
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      "move to pre-hit pose",
+      "re-orient to the right pose for hitting the ball"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "push forward to hit the ball",
+      "strike the ball"
+    ]

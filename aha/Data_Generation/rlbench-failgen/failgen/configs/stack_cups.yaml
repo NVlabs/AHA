@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -78,3 +78,89 @@ failures:
     name: bad_seq
     enabled: False
     waypoints: [0, 5]
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "grasp onto the first cup",
+      "pick cup 1",
+      "grab onto the first cup"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "lift up the first cup",
+      "pick up the first cup"
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      "move to the cup that is being stack on",
+      "move to the target cup",
+      "move to the second cup"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "stack the first cup with the second cup",
+      "drop the first cup into the second cup"
+    ]
+  - task_no: 4
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint4, waypoint5]
+    task_description: [
+      "grasp onto the third cup",
+      "pick the unstack cup",
+      "grab onto unstack cup"
+    ]
+  - task_no: 5
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint5, waypoint6]
+    task_description: [
+      "lift up the third cup",
+      "pick up the unstack cup"
+    ]
+  - task_no: 6
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint6, waypoint7]
+    task_description: [
+      "move to the cup that is being stack on",
+      "move to the target cup",
+      "move to the stack cups"
+    ]
+  - task_no: 7
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint7, waypoint8]
+    task_description: [
+      "stack the third cup with the first cup",
+      "drop the third  cup into the firstcup"
+    ]
+  - task_no: 8
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint8, waypoint9]
+    task_description: [
+      "retract back"
+    ]

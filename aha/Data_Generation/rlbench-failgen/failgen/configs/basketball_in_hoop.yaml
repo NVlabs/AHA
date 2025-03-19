@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -25,7 +25,7 @@ data:
   # We want to save the masks as rgb encodings.
   masks_as_one_channel: True
   # The set of waypoints for this task
-  waypoints: [0, 1, 2, 3]
+  waypoints: [0, 1, 2]
 failures:
   - type: grasp
     name: failure_grasp_pose
@@ -78,3 +78,28 @@ failures:
     enabled: False
     waypoints: [2]
     fail_after: 4
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "pick up the basketball",
+      "grasp the basketball and lift it up",
+      "use the gripper to pick up the basketball",
+      "use the gripper to grasp the ball",
+      "pick up the ball",
+      "grasp up the ball"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "move the basketball to the hoop and drop it",
+      "drop the basketball into the hoop",
+      "transfer the basketball above the hoop and drop it"
+    ]

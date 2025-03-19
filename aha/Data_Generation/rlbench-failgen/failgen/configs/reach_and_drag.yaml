@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -83,3 +83,52 @@ failures:
     name: bad_seq
     enabled: False
     waypoints: [0, 4]
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "grasp onto the hitting stick",
+      "grasp on the stick",
+      "pick the stick"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "lift up the hitting stick",
+      "pick up the stick",
+      "raise the stick upward"
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [basket_ball_hoop_visual]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      "move the stick to pre-drag pose",
+      "move the stick to the desire pose to drag the cube"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [basket_ball_hoop_visual]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "orient the stick to pre-drag pose",
+      "adjust the stick to prepare to drag the cube"
+    ]
+  - task_no: 4
+    enabled: False
+    type: dummy
+    targets: [basket_ball_hoop_visual]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "drag the stick forward to push the cube into the red square",
+      "use the stick to push the cube into the red square"
+    ]

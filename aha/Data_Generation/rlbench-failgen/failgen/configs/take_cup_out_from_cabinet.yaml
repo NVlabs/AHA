@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -35,7 +35,7 @@ failures:
   - type: translation_x
     name: trans_x
     enabled: False
-    waypoints: [0,1]
+    waypoints: [0]
     range: [-0.5, 0.5]
 
   - type: translation_y
@@ -44,11 +44,6 @@ failures:
     waypoints: [0]
     range: [-0.5, 0.5]
 
-  - type: translation_z
-    name: trans_z
-    enabled: False
-    waypoints: [0,1]
-    range: [-0.5, 0.5]
 
   - type: rotation_x
     name: rot_x
@@ -68,13 +63,58 @@ failures:
     waypoints: [0,1]
     range: [-1.57, 1.57]
 
-  - type: no_rotation
-    name: no_rot
-    enabled: False
-    waypoints: [1,2,3,4]
-
   - type: slip
     name: slippery
     enabled: False
     waypoints: [0,1,2,3,4,5,6]
     fail_after: 4
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "grasp onto the cabinet door handle"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "slip open the door"
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      "grasp onto the cup"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "lift up the cup"
+    ]
+  - task_no: 4
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint4, waypoint5]
+    task_description: [
+      "Take out the cup"
+    ]
+  - task_no: 5
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint4, waypoint5]
+    task_description: [
+      "let go of the cup"
+    ]

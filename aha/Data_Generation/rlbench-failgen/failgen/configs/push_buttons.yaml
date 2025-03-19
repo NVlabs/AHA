@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/failgen_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -62,15 +62,18 @@ failures:
     waypoints: [0]
     range: [-1.57, 1.57]
 
-  - type: wrong_object
-    name: grasp_wrong_object
-    enabled: True
-    waypoints: [0,1]
-    key_waypoint: waypoint0
-    original_name: push_buttons_target0
-    alternatives_names: [push_buttons_target1, push_buttons_target2]
-
   - type: wrong_sequence
     name: bad_seq
     enabled: False
     waypoints: [0,1]
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "push down on the right button",
+      "push the target button"
+    ]

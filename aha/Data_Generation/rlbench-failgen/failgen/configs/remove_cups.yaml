@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -74,15 +74,54 @@ failures:
     waypoints: [2,3,4]
     fail_after: 4
 
-  - type: wrong_object
-    name: grasp_wrong_object
-    enabled: True
-    waypoints: [0,1,2,3]
-    key_waypoint: waypoint0
-    original_name: mug0
-    alternatives_names: [mug1, mug2]
-
   - type: wrong_sequence
     name: bad_seq
     enabled: False
     waypoints: [2,4]
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "grasp onto the opening of the target mug",
+      "pick on the opening of the target mug"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "lift it up slightly",
+      "move it up slightly"
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      "pull out the mug",
+      "slide out the mug"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "move to above the target spot",
+      "move the mug to directly above the spot"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint4, waypoint5]
+    task_description: [
+      "place the mug down",
+      "set the mug down"
+    ]

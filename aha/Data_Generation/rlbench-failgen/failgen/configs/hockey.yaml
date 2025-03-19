@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -30,7 +30,7 @@ failures:
   - type: grasp
     name: fail_grasp
     enabled: False
-    waypoints: [3]
+    waypoints: [1]
 
   - type: translation_x
     name: trans_x
@@ -76,10 +76,52 @@ failures:
   - type: slip
     name: fail_slip
     enabled: False
-    waypoints: [1, 2, 3, 4]
+    waypoints: [2, 3, 4]
     fail_after: 5
 
   - type: wrong_sequence
     name: bad_seq
     enabled: False
     waypoints: [0, 4]
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "pre-grasp pose for the hockey stick",
+      "prepare the grasp pose and grasp the hockey stick",
+      "ready to grasp the hockey stick"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "grasp onto the hockey stick",
+      "pick on the hockey stick",
+      "hold onto the hockey stick"
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [basket_ball_hoop_visual]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      "orientate the hockey stick",
+      "adjust the hockey stick to pre-hit pose"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [basket_ball_hoop_visual]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "hit the red ball with the hockey stick",
+      "push the red ball with the hockey stick",
+      "rotate to strike the red ball",
+      "use the hockey stick to hit the red ball"
+    ]

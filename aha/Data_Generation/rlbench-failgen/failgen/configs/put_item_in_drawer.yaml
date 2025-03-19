@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -83,3 +83,83 @@ failures:
     name: bad_seq
     enabled: False
     waypoints: [3,8]
+  
+  - type: wrong_object
+    name: wrong_ob
+    enabled: False
+    waypoints: [1]
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "grasp onto the bottom drawer handle",
+      "pick the bottom drawer handle",
+      "grab onto the bottom drawer handle"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "release gripper",
+      "let go of gripper"
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      "retract back",
+      "move back"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "go to the target cube",
+      "move to the cube"
+    ]
+  - task_no: 4
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint4, waypoint5]
+    task_description: [
+      "grab onto the cube",
+      "pick up the cube"
+    ]
+  - task_no: 5
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint5, waypoint6]
+    task_description: [
+      "lift up the cube",
+      "retract upwards"
+    ]
+  - task_no: 7
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint6, waypoint7]
+    task_description: [
+      "move to placement pose",
+      "move to above the drawer"
+    ]
+  - task_no: 8
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint7, waypoint8]
+    task_description: [
+      "place the cube into the drawer",
+      "place the cube in the drawer"
+    ]

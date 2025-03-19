@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -67,3 +67,35 @@ failures:
     name: bad_seq
     enabled: False
     waypoints: [0, 1]
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [spawn_boundary]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      'grasp onto the laptop lid',
+      'pick on the laptop lid',
+      'hold onto the laptop lid and ready to close'
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [spawn_boundary]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      'rotate the laptop lid cover to close',
+      'close the laptop lid',
+      'move to close the laptop lid',
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [close_jar]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      'release the grasp to fully close it',
+      'let go of the laptop after closing it',
+      'close the laptop lid completely'
+      ]

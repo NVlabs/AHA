@@ -1,6 +1,6 @@
 data:
   # Where to save the demos
-  save_path: /home/${oc.env:USER}/data/rlbench_data
+  save_path: /home/jiafeid/rlbench-failgen/failgen/data
   # The size of the images to save
   image_size: [256, 256]
   # The renderer to use. Either opengl or opengl3. The first has no shadows
@@ -68,15 +68,55 @@ failures:
     waypoints: [2,3,4,5]
     fail_after: 4
 
-  - type: wrong_object
-    name: grasp_wrong_object
-    enabled: True
-    waypoints: [0,1,2,3]
-    key_waypoint: waypoint0
-    original_name: jar0
-    alternatives_names: [jar1]
-
   - type: wrong_sequence
     name: bad_seq
     enabled: False
     waypoints: [1,5]
+
+sub-tasks:
+  - task_no: 0
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint0, waypoint1]
+    task_description: [
+      "grasp onto the jar cover",
+      "pick the jar lid",
+      "grab onto jar lid"
+    ]
+  - task_no: 1
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint1, waypoint2]
+    task_description: [
+      "rotate to unscrew it",
+      "rotate to uncap the jar"
+    ]
+  - task_no: 2
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint2, waypoint3]
+    task_description: [
+      "push outwards to open it",
+      "push to open it"
+    ]
+  - task_no: 3
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint3, waypoint4]
+    task_description: [
+      "lift up the jar",
+      "pick up the jar"
+    ]
+  - task_no: 4
+    enabled: False
+    type: dummy
+    targets: [ball]
+    processes: [waypoint4, waypoint5]
+    task_description: [
+      "place it down onto the green patch",
+      "put it down onto the green patch"
+    ]
