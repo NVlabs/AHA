@@ -1,5 +1,30 @@
+import argparse
 import json
 from rouge_score import rouge_scorer
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Compute ROUGE scores from conversation data and answer files."
+    )
+    parser.add_argument(
+        "--data_path",
+        type=str,
+        required=True,
+        help="Path to the JSON file containing conversation data."
+    )
+    parser.add_argument(
+        "--answers_path",
+        type=str,
+        required=True,
+        help="Path to the JSON-lines file containing answers."
+    )
+    parser.add_argument(
+        "--indx_num",
+        type=int,
+        default=11291,
+        help="Number of indices to process (default: 11291)."
+    )
+    return parser.parse_args()
 
 def compute_rouge(sentence1, sentence2):
     scorer = rouge_scorer.RougeScorer(['rouge1', 'rouge2', 'rougeL'], use_stemmer=True)
@@ -9,13 +34,18 @@ def compute_rouge(sentence1, sentence2):
 def load_json(filepath):
     with open(filepath, 'r') as file:
         return json.load(file)
+
 def print_conversation_by_id(data, target_id):
     for item in data:
         if item["id"] == target_id:
             for convo in item["conversations"]:
                 if convo["from"] == "gpt":
                     print(convo["value"])
-    return str(convo["value"])
+                    # Return the first matching value.
+                    return str(convo["value"])
+    # Return an empty string if not found.
+    return ""
+
 def read_json_line_by_line(file_path, target_value):
     try:
         with open(file_path, 'r') as file:
@@ -37,7 +67,8 @@ def read_json_line_by_line(file_path, target_value):
         print(f"The file {file_path} does not exist.")
     except IOError as e:
         print(f"An error occurred while reading the file: {e}")
-    
+    return ""
+
 def extract_words_after_comma(text):
     # Split the string by the first comma
     parts = text.split(',', 1)
@@ -48,53 +79,44 @@ def extract_words_after_comma(text):
     else:
         # If there is no comma, return an empty string
         return ""
-# data = load_json('/home/jiafeid/rlbench-failgen/evaluation/valdata.json')
-# data = load_json('/home/jiafeid/rlbench-failgen/evaluation/outman_qa2.json')
-data = load_json('/home/jiafeid/rlbench-failgen/evaluation/out_qa.json')
-# data = load_json('/home/jiafeid/rlbench-failgen/evaluation/real_qa.json')
 
+def main():
+    args = parse_args()
 
-yes_point=0
-# Example usage
-# file_path = "/home/jiafeid/rlbench-failgen/evaluation/evaluation/Aha_13B_34k_out_qa_failgen_answers.json"
-file_path = 'evaluation/evaluation/aha_arnold_out_final_qa_failgen_answers.json'
-no_point=0.0
-total_yes=0
-# indx_num=138
-# indx_num=6868
+    data = load_json(args.data_path)
+    answers_file = args.answers_path
+    indx_num = args.indx_num
 
-indx_num=11291
-# indx_num=56
-num_id=[]
-for i in range(indx_num):
-    id_num= i
-    print(i)
-    target_value = id_num # Replace this with the value you're looking for
-    prediction= read_json_line_by_line(file_path, target_value)
-    gt= print_conversation_by_id(data, str(id_num))
+    yes_point = 0
+    no_point = 0.0
+    num_id = []
 
-    gt_substring = gt.split(',')[0].strip().lower()
-    prediction_substring = prediction.split(',')[0].strip().lower()
+    for i in range(indx_num):
+        print(f"Processing index: {i}")
+        target_value = i  # Using the index as target value
+        prediction = read_json_line_by_line(answers_file, target_value)
+        gt = print_conversation_by_id(data, str(i))
 
-    if gt_substring == "yes" and prediction_substring == "yes":
-        yes_point +=1
-    elif gt_substring == "no" and prediction_substring == "no":
-        new_prediction = extract_words_after_comma(prediction)
-        new_GT = extract_words_after_comma(gt)
-        print("_____")
-        print(new_prediction)
-        print(new_GT)
-        rouge_scores = compute_rouge(new_prediction, new_GT)
-        if str(new_prediction)==str(new_GT):
-            num_id.append(i)
-        # print("ROUGE-L:", rouge_scores['rougeL'])
-        score= rouge_scores['rougeL'][2]
-        print("ROUGE-L F1 Score:", score)
-        no_point += score
+        gt_substring = gt.split(',')[0].strip().lower() if gt else ""
+        prediction_substring = prediction.split(',')[0].strip().lower() if prediction else ""
 
+        if gt_substring == "yes" and prediction_substring == "yes":
+            yes_point += 1
+        elif gt_substring == "no" and prediction_substring == "no":
+            new_prediction = extract_words_after_comma(prediction)
+            new_GT = extract_words_after_comma(gt)
+            print("_____")
+            print("Prediction substring:", new_prediction)
+            print("GT substring:", new_GT)
+            rouge_scores = compute_rouge(new_prediction, new_GT)
+            if new_prediction == new_GT:
+                num_id.append(i)
+            score = rouge_scores['rougeL'][2]
+            print("ROUGE-L F1 Score:", score)
+            no_point += score
 
+        total_score = (yes_point + no_point) / indx_num
+        print("Current F1 score:", total_score)
 
-    # print("GT:", gt_substring)
-    # print("Prediction:", prediction_substring)
-    print("F1 score:", (yes_point+no_point)/indx_num)
-# print(num_id)
+if __name__ == "__main__":
+    main()
