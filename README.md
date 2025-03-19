@@ -128,19 +128,6 @@ python ./aha/Data_Generation/rlbench-failgen/process_data.py /path/to/input_fold
 #Format the processed data into json for finetuning.
 python ./aha/Data_Generation/rlbench-failgen/make_json.py /path/to/processed_data --output ./aha_training.json
 ```
-### 6. Evaluation:
-
-We evaluated **AHA** on three test datasets:  
-- **AHA (test)**  
-- **Maniskill FailGen data**  
-- **REFLECT**
-
-Below are the instructions to generate or obtain each dataset:
-
-- ⚙️ **AHA (test):** Generate this dataset using the same dataset generation script, but with different tasks.
-- 📖 **Maniskill FailGen:** Follow the instructions [here](https://github.com/wpumacay/maniskill-failgen) to generate the dataset.
-- 🔍 **REFLECT:** Sub-sample the REFLECT dataset from [this source](https://www.cs.columbia.edu/~liuzeyi/reflect_data/) and use our annotated JSON file for evaluation.
-
 
 ## 🧠 Visual Instruction Finetuning
 
@@ -199,6 +186,19 @@ Hyperparameters used in instruction tuning are provided below.
 #For full finetuning of RoboPoint with AHA dataset via Vicuna 1.5
 bash ./RoboPoint/scripts/finetune_vicuna.sh 
 ```
+
+## Evaluation:
+
+We evaluated **AHA** on three test datasets:  
+- **AHA (test)**  
+- **Maniskill FailGen data**  
+- **REFLECT**
+
+Below are the instructions to generate or obtain each dataset:
+
+- ⚙️ **AHA (test):** Generate this dataset using the same dataset generation script, but with different tasks.
+- 📖 **Maniskill FailGen:** Follow the instructions [here](https://github.com/wpumacay/maniskill-failgen) to generate the dataset.
+- 🔍 **REFLECT:** Sub-sample the REFLECT dataset from [this source](https://www.cs.columbia.edu/~liuzeyi/reflect_data/) and use our annotated JSON file for evaluation.
 
 
 ## 🙏 Acknowledgments
