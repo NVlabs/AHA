@@ -1,11 +1,11 @@
+import argparse
 import json
 from rouge_score import rouge_scorer
 from nltk.translate.bleu_score import sentence_bleu, corpus_bleu
 import nltk
-from nltk.translate.bleu_score import sentence_bleu
-nltk.download('punkt')
 import sacrebleu
 
+nltk.download('punkt')
 
 def compute_bleu_score(prediction, ground_truth):
     # sacrebleu expects the ground truth as a list of references
@@ -20,13 +20,17 @@ def compute_rouge(sentence1, sentence2):
 def load_json(filepath):
     with open(filepath, 'r') as file:
         return json.load(file)
+
 def print_conversation_by_id(data, target_id):
+    # Returns the first GPT conversation matching the target_id
     for item in data:
         if item["id"] == target_id:
             for convo in item["conversations"]:
                 if convo["from"] == "gpt":
                     print(convo["value"])
-    return str(convo["value"])
+                    return str(convo["value"])
+    return ""
+
 def read_json_line_by_line(file_path, target_value):
     try:
         with open(file_path, 'r') as file:
@@ -48,56 +52,72 @@ def read_json_line_by_line(file_path, target_value):
         print(f"The file {file_path} does not exist.")
     except IOError as e:
         print(f"An error occurred while reading the file: {e}")
-    
+    return ""
+
 def extract_words_after_comma(text):
-    # Split the string by the first comma
+    # Split the string by the first comma and return the remainder
     parts = text.split(',', 1)
-    # Check if there is a comma in the text
     if len(parts) > 1:
-        # Return the part after the first comma, stripping any leading/trailing whitespace
         return parts[1].strip()
     else:
-        # If there is no comma, return an empty string
         return ""
-# data = load_json('/home/jiafeid/rlbench-failgen/evaluation/valdata.json')
-# data = load_json('/home/jiafeid/rlbench-failgen/evaluation/outman_qa2.json')
-data = load_json('/home/jiafeid/rlbench-failgen/evaluation/out_qa.json')
-# data = load_json('/home/jiafeid/rlbench-failgen/evaluation/real_qa.json')
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Evaluate predictions using conversation data and compute F1 scores."
+    )
+    parser.add_argument(
+        "--data_path",
+        type=str,
+        required=True,
+        help="Path to the conversation data JSON file."
+    )
+    parser.add_argument(
+        "--answers_path",
+        type=str,
+        required=True,
+        help="Path to the answers JSON lines file."
+    )
+    parser.add_argument(
+        "--indx_num",
+        type=int,
+        default=11291,
+        help="Number of indices to process (default: 11291)."
+    )
+    return parser.parse_args()
 
-yes_point=0
-# Example usage
-# file_path = "/home/jiafeid/rlbench-failgen/evaluation/evaluation/Aha_13B_34k_out_qa_failgen_answers.json"
-file_path = '/home/jiafeid/rlbench-failgen/evaluation/evaluation/aha_fr_out_final_qa_failgen_answers.json'
-no_point=0.0
-total_yes=0
-# indx_num=138
-# indx_num=6868
+def main():
+    args = parse_args()
+    data = load_json(args.data_path)
+    answers_file = args.answers_path
+    indx_num = args.indx_num
 
-indx_num=11291
-# indx_num=56
-for i in range(indx_num):
-    id_num= i
-    print(i)
-    target_value = id_num # Replace this with the value you're looking for
-    prediction= read_json_line_by_line(file_path, target_value)
-    gt= print_conversation_by_id(data, str(id_num))
-    
-    gt_substring = gt.split(',')[0].strip().lower()
-    if gt_substring == "yes":
-        total_yes += 1
-    prediction_substring = prediction.split(',')[0].strip().lower()
+    yes_point = 0
+    no_point = 0.0
+    total_yes = 0
 
-    if gt_substring == "yes" and prediction_substring == "yes":
-        yes_point +=1
-    elif gt_substring == "no" and prediction_substring == "no":
-    
-        no_point +=1
+    for i in range(indx_num):
+        print(f"Processing index: {i}")
+        target_value = i  # Using the index as target value
+        prediction = read_json_line_by_line(answers_file, target_value)
+        gt = print_conversation_by_id(data, str(i))
+        
+        gt_substring = gt.split(',')[0].strip().lower() if gt else ""
+        if gt_substring == "yes":
+            total_yes += 1
+        prediction_substring = prediction.split(',')[0].strip().lower() if prediction else ""
+        
+        if gt_substring == "yes" and prediction_substring == "yes":
+            yes_point += 1
+        elif gt_substring == "no" and prediction_substring == "no":
+            no_point += 1
 
+        # Optionally, you can print a running F1 score here using the current index + 1.
+        current_f1 = (yes_point + no_point) / (i + 1)
+        print(f"Current F1 score: {current_f1}")
 
+    final_f1 = (yes_point + no_point) / indx_num
+    print("Final F1 score:", final_f1)
 
-    # print("GT:", gt_substring)
-    # print("Prediction:", prediction_substring)
-# print(yes_point)
-# print(yes_point/total_yes)
-    print("F1 score:", (yes_point+no_point)/indx_num)
+if __name__ == "__main__":
+    main()
