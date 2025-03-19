@@ -200,6 +200,24 @@ Below are the instructions to generate or obtain each dataset:
 - 📖 **Maniskill FailGen:** Follow the instructions [here](https://github.com/wpumacay/maniskill-failgen) to generate the dataset.
 - 🔍 **REFLECT:** Sub-sample the REFLECT dataset from [this source](https://www.cs.columbia.edu/~liuzeyi/reflect_data/) and use our annotated JSON file for evaluation.
 
+After evaluated your trained model with the respective datasets you can measure the ROGUE-L, LLM Fuzzy, or Binary Success results via these:
+
+### LLM Fuzzy
+
+```bash
+python aha/evaluation/eval_metrics/LLM_fuzzy.py --gt_path /path/to/real_qa.json --res_path /path/to/your_results.json
+```
+### ROGUE-L
+
+```bash
+pythonaha/evaluation/eval_metrics/check_answer_ROGUE.py --data_path /path/to/out_qa.json --answers_path /path/to/aha_arnold_out_final_qa_failgen_answers.json --indx_num 11291
+```
+
+### Binary Success
+
+```bash
+python aha/evaluation/eval_metrics/check_answer_Yes_No.py --data_path /path/to/out_qa.json --answers_path /path/to/aha_fr_out_final_qa_failgen_answers.json --indx_num 11291
+```
 
 ## 🙏 Acknowledgments
 We thank the following projects that parts of our code are derived from:
