@@ -210,7 +210,7 @@ python aha/evaluation/eval_metrics/LLM_fuzzy.py --gt_path /path/to/real_qa.json 
 ### ROGUE-L
 
 ```bash
-pythonaha/evaluation/eval_metrics/check_answer_ROGUE.py --data_path /path/to/out_qa.json --answers_path /path/to/aha_arnold_out_final_qa_failgen_answers.json --indx_num 11291
+python aha/evaluation/eval_metrics/check_answer_ROGUE.py --data_path /path/to/out_qa.json --answers_path /path/to/aha_arnold_out_final_qa_failgen_answers.json --indx_num 11291
 ```
 
 ### Binary Success
