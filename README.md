@@ -114,7 +114,7 @@ xvfb-run -a -s "-screen 0 1400x900x24" \
   --savepath <Output Dir>
 ```
 
-Generate all 80 tasks as in the paper:
+Generate all 79 tasks as in the paper:
 ```bash
 bash ./aha/Data_Generation/rlbench-failgen/examples/ex_custom_data_generator.sh
 ```
