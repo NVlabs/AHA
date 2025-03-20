@@ -1,0 +1,800 @@
+[
+    {
+        "id": "0",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_wrong_sequence_wp0_episode1_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up the bowl and flip it.       Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "1",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_wrong_sequence_wp0_episode1_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place the apple into bowl.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_slip_wp1_episode2_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up of the apple.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_slip_wp1_episode2_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place the apple into bowl.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot slip the object out of its gripper."
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_slip_wp1_episode3_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up of the apple.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_slip_wp1_episode3_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place the apple into bowl.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot slip the object out of its gripper."
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up the pot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place pot in sink.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_2.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing toggle on the faucet.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_3.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing toggle off the faucet.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_4.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up of the pot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot execute the action on the wrong object."
+            }
+        ]
+    },
+    {
+        "id": "11",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_5.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place pot on stove.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot execute the action on the wrong object."
+            }
+        ]
+    },
+    {
+        "id": "12",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_6.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing toggle on stove.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot execute the action on the wrong object."
+            }
+        ]
+    },
+    {
+        "id": "13",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up metal pot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "14",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place the pot in sink.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "15",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_2.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing toggle on the tap.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "16",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_3.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing toggle off the tap.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "17",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_4.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place the metal pot onto the stove.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "18",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_5.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing turn on the stove.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "19",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up the metal pot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "20",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place metal pot in sink.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "21",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_2.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing toggle on the tap.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "22",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_3.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing toggle off the tap.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "23",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_4.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing grasping of the metal pot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "24",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_5.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing placement on stove.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot slip the object out of its gripper."
+            }
+        ]
+    },
+    {
+        "id": "25",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_6.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing turn on the stove.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot slip the object out of its gripper."
+            }
+        ]
+    },
+    {
+        "id": "26",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cut_carrot_translation_z_wp1_episode0_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up the knife.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "27",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cut_carrot_translation_z_wp1_episode0_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing cutting the carrot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot gripper move to the desired position with an offset along the z direction."
+            }
+        ]
+    },
+    {
+        "id": "28",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cut_carrot_slip_wp1_episode1_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up the knife.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "29",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cut_carrot_slip_wp1_episode1_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing cutting the carrot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot slip the object out of its gripper."
+            }
+        ]
+    },
+    {
+        "id": "30",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/put_pear_wrong_sequence_wp0_episode0_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing open the box.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "31",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/put_pear_wrong_sequence_wp0_episode0_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place the pear in the box.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "32",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/put_pear_wrong_sequence_wp0_episode0_combined_view_2.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up the pear.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "33",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_object_wp0_episode0_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up the knife.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot execute the action on the wrong object."
+            }
+        ]
+    },
+    {
+        "id": "34",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_object_wp0_episode0_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing slice the carrot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot execute the action on the wrong object."
+            }
+        ]
+    },
+    {
+        "id": "35",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm pick up the knife.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "36",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm slice the carrot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "37",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_2.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm place the knife down.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "38",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_3.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm grasp onto the carrot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "39",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_4.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm place the carrot in the pot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "40",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_5.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm toggle the stove.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "41",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_6.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm toggle off the stove.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, This is not the right action sequence for the task."
+            }
+        ]
+    },
+    {
+        "id": "42",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm grasp onto the knife.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "43",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm cut the carrot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot slip the object out of its gripper."
+            }
+        ]
+    },
+    {
+        "id": "44",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_2.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm place the knife.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot slip the object out of its gripper."
+            }
+        ]
+    },
+    {
+        "id": "45",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_3.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm picking up the sliced carrot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot slip the object out of its gripper."
+            }
+        ]
+    },
+    {
+        "id": "46",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_4.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm lift up the sliced carrot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot slip the object out of its gripper."
+            }
+        ]
+    },
+    {
+        "id": "47",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_5.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm place in the metal pot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot slip the object out of its gripper."
+            }
+        ]
+    },
+    {
+        "id": "48",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/put_bowl_wrong_object_wp0_episode0_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm pick up the pear.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot execute the action on the wrong object."
+            }
+        ]
+    },
+    {
+        "id": "49",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/put_bowl_wrong_object_wp0_episode0_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm place in the bowl.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot execute the action on the wrong object."
+            }
+        ]
+    },
+    {
+        "id": "50",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/make_coffee_wrong_object_wp1_episode0_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm press the button on the coffee machine.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "51",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/make_coffee_wrong_object_wp1_episode0_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm picking up the blue cup from the coffee machine.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot execute the action on the wrong object."
+            }
+        ]
+    },
+    {
+        "id": "52",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/make_coffee_wrong_object_wp1_episode0_combined_view_2.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm lifting up the blue cup from the coffee machine.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot execute the action on the wrong object."
+            }
+        ]
+    },
+    {
+        "id": "53",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_water_grasp_wp2_episode0_combined_view_0.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm picking up the metal pot.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "54",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_water_grasp_wp2_episode0_combined_view_1.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm place it on the stove.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "Yes, the robot succeed at the sub-task."
+            }
+        ]
+    },
+    {
+        "id": "55",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_water_grasp_wp2_episode0_combined_view_2.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm grasp onto the stove knob.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot gripper fails to close the gripper."
+            }
+        ]
+    },
+    {
+        "id": "56",
+        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_water_grasp_wp2_episode0_combined_view_3.jpg",
+        "conversations": [
+            {
+                "from": "human",
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm grasp onto the stove knob.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+            },
+            {
+                "from": "gpt",
+                "value": "No, The robot gripper fails to close the gripper."
+            }
+        ]
+    }
+]
