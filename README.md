@@ -5,7 +5,7 @@
 [![Project Page](https://img.shields.io/badge/Project-Page-blue)](https://aha-vlm.github.io/) 
 [![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://aha-vlm.github.io/Aha_paper.pdf)
 
-**AHA: A Vision-Language-Model for Detecting and Reasoning over Failures in Robotic Manipulation [ICLR 2025]** 
+**[ICLR 2025]** 
 [[Paper](https://arxiv.org/abs/2410.00371)]
 
 [Jiafei Duan](https://duanjiafei.com), [Wilbert Pumacay](https://wpumacay.github.io), [Nishanth Kumar](https://nishanthjkumar.com/), [Yi Ru Wang](https://helen9975.github.io/), [Shulin Tian](https://shulin16.github.io/), [Wentao Yuan](https://wentaoyuan.github.io), [Ranjay Krishna](https://ranjaykrishna.com), [Dieter Fox](https://homes.cs.washington.edu/~fox/), [Ajay Mandlekar*](https://ai.stanford.edu/~amandlek/), [Yijie Guo*](https://research.nvidia.com/person/yijie-guo)
