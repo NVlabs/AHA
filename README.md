@@ -1,4 +1,4 @@
-# 🤖 AHA: A Vision-Language-Model for Detecting and Reasoning over Failures in Robotic Manipulation
+# 🤖 AHA: A Vision-Language Model for Detecting and Reasoning over Failures in Robotic Manipulation
 
 *Precise failure reasoning and detection for robotic manipulation*
 
