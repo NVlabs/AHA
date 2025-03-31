@@ -1,7 +1,7 @@
 [
     {
         "id": "0",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_wrong_sequence_wp0_episode1_combined_view_0.jpg",
+        "image": "./apple_in_bowl_wrong_sequence_wp0_episode1_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -15,7 +15,7 @@
     },
     {
         "id": "1",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_wrong_sequence_wp0_episode1_combined_view_1.jpg",
+        "image": "./apple_in_bowl_wrong_sequence_wp0_episode1_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -29,7 +29,7 @@
     },
     {
         "id": "2",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_slip_wp1_episode2_combined_view_0.jpg",
+        "image": "./apple_in_bowl_slip_wp1_episode2_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -43,7 +43,7 @@
     },
     {
         "id": "3",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_slip_wp1_episode2_combined_view_1.jpg",
+        "image": "./apple_in_bowl_slip_wp1_episode2_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -57,7 +57,7 @@
     },
     {
         "id": "4",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_slip_wp1_episode3_combined_view_0.jpg",
+        "image": "./apple_in_bowl_slip_wp1_episode3_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -71,7 +71,7 @@
     },
     {
         "id": "5",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/apple_in_bowl_slip_wp1_episode3_combined_view_1.jpg",
+        "image": "./apple_in_bowl_slip_wp1_episode3_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -85,7 +85,7 @@
     },
     {
         "id": "6",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_0.jpg",
+        "image": "./boil_pot_wrong_object_wp4_episode0_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -99,7 +99,7 @@
     },
     {
         "id": "7",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_1.jpg",
+        "image": "./boil_pot_wrong_object_wp4_episode0_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -113,7 +113,7 @@
     },
     {
         "id": "8",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_2.jpg",
+        "image": "./boil_pot_wrong_object_wp4_episode0_combined_view_2.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -127,7 +127,7 @@
     },
     {
         "id": "9",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_3.jpg",
+        "image": "./boil_pot_wrong_object_wp4_episode0_combined_view_3.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -141,7 +141,7 @@
     },
     {
         "id": "10",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_4.jpg",
+        "image": "./boil_pot_wrong_object_wp4_episode0_combined_view_4.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -155,7 +155,7 @@
     },
     {
         "id": "11",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_5.jpg",
+        "image": "./boil_pot_wrong_object_wp4_episode0_combined_view_5.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -169,7 +169,7 @@
     },
     {
         "id": "12",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_object_wp4_episode0_combined_view_6.jpg",
+        "image": "./boil_pot_wrong_object_wp4_episode0_combined_view_6.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -183,7 +183,7 @@
     },
     {
         "id": "13",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_0.jpg",
+        "image": "./boil_pot_wrong_sequence_wp2_episode1_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -197,7 +197,7 @@
     },
     {
         "id": "14",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_1.jpg",
+        "image": "./boil_pot_wrong_sequence_wp2_episode1_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -211,7 +211,7 @@
     },
     {
         "id": "15",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_2.jpg",
+        "image": "./boil_pot_wrong_sequence_wp2_episode1_combined_view_2.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -225,7 +225,7 @@
     },
     {
         "id": "16",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_3.jpg",
+        "image": "./boil_pot_wrong_sequence_wp2_episode1_combined_view_3.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -239,7 +239,7 @@
     },
     {
         "id": "17",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_4.jpg",
+        "image": "./boil_pot_wrong_sequence_wp2_episode1_combined_view_4.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -253,7 +253,7 @@
     },
     {
         "id": "18",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_wrong_sequence_wp2_episode1_combined_view_5.jpg",
+        "image": "./boil_pot_wrong_sequence_wp2_episode1_combined_view_5.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -267,7 +267,7 @@
     },
     {
         "id": "19",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_0.jpg",
+        "image": "./boil_pot_slip_wp5_episode2_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -281,7 +281,7 @@
     },
     {
         "id": "20",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_1.jpg",
+        "image": "./boil_pot_slip_wp5_episode2_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -295,7 +295,7 @@
     },
     {
         "id": "21",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_2.jpg",
+        "image": "./boil_pot_slip_wp5_episode2_combined_view_2.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -309,7 +309,7 @@
     },
     {
         "id": "22",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_3.jpg",
+        "image": "./boil_pot_slip_wp5_episode2_combined_view_3.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -323,7 +323,7 @@
     },
     {
         "id": "23",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_4.jpg",
+        "image": "./boil_pot_slip_wp5_episode2_combined_view_4.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -337,7 +337,7 @@
     },
     {
         "id": "24",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_5.jpg",
+        "image": "./boil_pot_slip_wp5_episode2_combined_view_5.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -351,7 +351,7 @@
     },
     {
         "id": "25",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_pot_slip_wp5_episode2_combined_view_6.jpg",
+        "image": "./boil_pot_slip_wp5_episode2_combined_view_6.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -365,7 +365,7 @@
     },
     {
         "id": "26",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cut_carrot_translation_z_wp1_episode0_combined_view_0.jpg",
+        "image": "./cut_carrot_translation_z_wp1_episode0_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -379,7 +379,7 @@
     },
     {
         "id": "27",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cut_carrot_translation_z_wp1_episode0_combined_view_1.jpg",
+        "image": "./cut_carrot_translation_z_wp1_episode0_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -393,7 +393,7 @@
     },
     {
         "id": "28",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cut_carrot_slip_wp1_episode1_combined_view_0.jpg",
+        "image": "./cut_carrot_slip_wp1_episode1_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -407,7 +407,7 @@
     },
     {
         "id": "29",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cut_carrot_slip_wp1_episode1_combined_view_1.jpg",
+        "image": "./cut_carrot_slip_wp1_episode1_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -421,7 +421,7 @@
     },
     {
         "id": "30",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/put_pear_wrong_sequence_wp0_episode0_combined_view_0.jpg",
+        "image": "./put_pear_wrong_sequence_wp0_episode0_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -435,7 +435,7 @@
     },
     {
         "id": "31",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/put_pear_wrong_sequence_wp0_episode0_combined_view_1.jpg",
+        "image": "./put_pear_wrong_sequence_wp0_episode0_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -449,7 +449,7 @@
     },
     {
         "id": "32",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/put_pear_wrong_sequence_wp0_episode0_combined_view_2.jpg",
+        "image": "./put_pear_wrong_sequence_wp0_episode0_combined_view_2.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -463,7 +463,7 @@
     },
     {
         "id": "33",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_object_wp0_episode0_combined_view_0.jpg",
+        "image": "./cook_carrot_wrong_object_wp0_episode0_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -477,7 +477,7 @@
     },
     {
         "id": "34",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_object_wp0_episode0_combined_view_1.jpg",
+        "image": "./cook_carrot_wrong_object_wp0_episode0_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -491,7 +491,7 @@
     },
     {
         "id": "35",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_0.jpg",
+        "image": "./cook_carrot_wrong_sequence_wp4_episode1_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -505,7 +505,7 @@
     },
     {
         "id": "36",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_1.jpg",
+        "image": "./cook_carrot_wrong_sequence_wp4_episode1_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -519,7 +519,7 @@
     },
     {
         "id": "37",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_2.jpg",
+        "image": "./cook_carrot_wrong_sequence_wp4_episode1_combined_view_2.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -533,7 +533,7 @@
     },
     {
         "id": "38",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_3.jpg",
+        "image": "./cook_carrot_wrong_sequence_wp4_episode1_combined_view_3.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -547,7 +547,7 @@
     },
     {
         "id": "39",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_4.jpg",
+        "image": "./cook_carrot_wrong_sequence_wp4_episode1_combined_view_4.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -561,7 +561,7 @@
     },
     {
         "id": "40",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_5.jpg",
+        "image": "./cook_carrot_wrong_sequence_wp4_episode1_combined_view_5.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -575,7 +575,7 @@
     },
     {
         "id": "41",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_wrong_sequence_wp4_episode1_combined_view_6.jpg",
+        "image": "./cook_carrot_wrong_sequence_wp4_episode1_combined_view_6.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -589,7 +589,7 @@
     },
     {
         "id": "42",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_0.jpg",
+        "image": "./cook_carrot_slip_wp1_episode2_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -603,7 +603,7 @@
     },
     {
         "id": "43",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_1.jpg",
+        "image": "./cook_carrot_slip_wp1_episode2_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -617,7 +617,7 @@
     },
     {
         "id": "44",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_2.jpg",
+        "image": "./cook_carrot_slip_wp1_episode2_combined_view_2.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -631,7 +631,7 @@
     },
     {
         "id": "45",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_3.jpg",
+        "image": "./cook_carrot_slip_wp1_episode2_combined_view_3.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -645,7 +645,7 @@
     },
     {
         "id": "46",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_4.jpg",
+        "image": "./cook_carrot_slip_wp1_episode2_combined_view_4.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -659,7 +659,7 @@
     },
     {
         "id": "47",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/cook_carrot_slip_wp1_episode2_combined_view_5.jpg",
+        "image": "./cook_carrot_slip_wp1_episode2_combined_view_5.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -673,7 +673,7 @@
     },
     {
         "id": "48",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/put_bowl_wrong_object_wp0_episode0_combined_view_0.jpg",
+        "image": "./put_bowl_wrong_object_wp0_episode0_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -687,7 +687,7 @@
     },
     {
         "id": "49",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/put_bowl_wrong_object_wp0_episode0_combined_view_1.jpg",
+        "image": "./put_bowl_wrong_object_wp0_episode0_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -701,7 +701,7 @@
     },
     {
         "id": "50",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/make_coffee_wrong_object_wp1_episode0_combined_view_0.jpg",
+        "image": "./make_coffee_wrong_object_wp1_episode0_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -715,7 +715,7 @@
     },
     {
         "id": "51",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/make_coffee_wrong_object_wp1_episode0_combined_view_1.jpg",
+        "image": "./make_coffee_wrong_object_wp1_episode0_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -729,7 +729,7 @@
     },
     {
         "id": "52",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/make_coffee_wrong_object_wp1_episode0_combined_view_2.jpg",
+        "image": "./make_coffee_wrong_object_wp1_episode0_combined_view_2.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -743,7 +743,7 @@
     },
     {
         "id": "53",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_water_grasp_wp2_episode0_combined_view_0.jpg",
+        "image": "./boil_water_grasp_wp2_episode0_combined_view_0.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -757,7 +757,7 @@
     },
     {
         "id": "54",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_water_grasp_wp2_episode0_combined_view_1.jpg",
+        "image": "./boil_water_grasp_wp2_episode0_combined_view_1.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -771,7 +771,7 @@
     },
     {
         "id": "55",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_water_grasp_wp2_episode0_combined_view_2.jpg",
+        "image": "./boil_water_grasp_wp2_episode0_combined_view_2.jpg",
         "conversations": [
             {
                 "from": "human",
@@ -785,7 +785,7 @@
     },
     {
         "id": "56",
-        "image": "/home/jiafeid/rlbench-failgen/evaluation/Real_world/final/boil_water_grasp_wp2_episode0_combined_view_3.jpg",
+        "image": "./boil_water_grasp_wp2_episode0_combined_view_3.jpg",
         "conversations": [
             {
                 "from": "human",
