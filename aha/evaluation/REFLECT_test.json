@@ -439,7 +439,7 @@
         "conversations": [
             {
                 "from": "human",
-                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place the pear in the box.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up the pear in the box.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
             },
             {
                 "from": "gpt",
@@ -453,7 +453,7 @@
         "conversations": [
             {
                 "from": "human",
-                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing pick up the pear.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
+                "value": "<image>\n In the image, it contains many frames from a single view at different time steps in a matrix arrangement depicting the robot arm performing place the pear.         Each frame is labeled with the corresponding timestep reflecting the temporal information from left to right.        The white grid represents future sub-tasks that has yet to happen and should be ignore.        For the given sub-tasks, first determine it has succeed by choosing from [\"yes\", \"no\"], and then explain the reason why the current sub-tasks has failed."
             },
             {
                 "from": "gpt",
