@@ -201,7 +201,7 @@ Below are the instructions to generate or obtain each dataset:
   bash ./aha/Data_Generation/rlbench-failgen/examples/ex_data_generator_eval.sh
   ```
 - 📖 **Maniskill FailGen:** Follow the instructions [here](https://github.com/wpumacay/maniskill-failgen) to generate the dataset.
-- 🔍 **REFLECT:** Sub-sample the REFLECT dataset from [this source](https://www.cs.columbia.edu/~liuzeyi/reflect_data/) and use our annotated JSON file for evaluation.
+- 🔍 **REFLECT:** Sub-sample the REFLECT dataset from [this source](https://github.com/NVlabs/AHA/tree/main/aha/evaluation/REFLECT_Eval_dataset) and use our annotated JSON file for evaluation.
 
 After evaluated your trained model with the respective datasets you can measure the ROGUE-L, LLM Fuzzy, or Binary Success results via these:
 
